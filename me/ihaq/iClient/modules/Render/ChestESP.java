@@ -1,10 +1,10 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Render;
 
 import net.minecraft.tileentity.TileEntityChest;
 
 import org.lwjgl.input.Keyboard;
 
-import me.ihaq.iClient.module.Module;
+import me.ihaq.iClient.modules.Module;
 import me.ihaq.iClient.utils.RenderUtils;
 
 public class ChestESP extends Module{

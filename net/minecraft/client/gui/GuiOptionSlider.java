@@ -1,11 +1,12 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.MathHelper;
 
-public class GuiOptionSlider extends GuiButton
+public class GuiOptionSlider extends GUIIButton
 {
     private float sliderValue;
     public boolean dragging;

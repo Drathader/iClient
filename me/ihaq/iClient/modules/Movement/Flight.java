@@ -1,14 +1,14 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Movement;
 
 import org.lwjgl.input.Keyboard;
- 
-import me.ihaq.iClient.module.Module;
+
+import me.ihaq.iClient.modules.Module;
 import net.minecraft.network.play.client.C03PacketPlayer;
  
 public class Flight extends Module{
 	private static String mode;
     public Flight() {
-        super("Flight", Keyboard.KEY_F,Category.MOVEMENT, mode);
+        super("Flight", Keyboard.KEY_G,Category.MOVEMENT, mode);
     }
        
     @Override

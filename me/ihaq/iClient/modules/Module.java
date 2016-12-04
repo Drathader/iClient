@@ -1,4 +1,4 @@
-package me.ihaq.iClient.module;
+package me.ihaq.iClient.modules;
 
 import net.minecraft.client.Minecraft;
 

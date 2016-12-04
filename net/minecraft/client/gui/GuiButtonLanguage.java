@@ -1,9 +1,10 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class GuiButtonLanguage extends GuiButton
+public class GuiButtonLanguage extends GUIIButton
 {
     public GuiButtonLanguage(int buttonID, int xPos, int yPos)
     {

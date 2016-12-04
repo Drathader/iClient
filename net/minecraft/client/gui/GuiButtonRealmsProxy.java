@@ -1,9 +1,10 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.realms.RealmsButton;
 
-public class GuiButtonRealmsProxy extends GuiButton
+public class GuiButtonRealmsProxy extends GUIIButton
 {
     private RealmsButton realmsButton;
 

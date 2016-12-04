@@ -1,9 +1,9 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Misc;
 
 import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
 import org.lwjgl.input.Keyboard;
 
-import me.ihaq.iClient.module.Module;
+import me.ihaq.iClient.modules.Module;
 import net.minecraft.network.play.client.C03PacketPlayer;
 
 

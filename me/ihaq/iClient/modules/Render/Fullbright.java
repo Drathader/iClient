@@ -1,8 +1,9 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Render;
 
 
 import org.lwjgl.input.Keyboard;
-import me.ihaq.iClient.module.Module; 
+
+import me.ihaq.iClient.modules.Module; 
 
 public class Fullbright extends Module{
        

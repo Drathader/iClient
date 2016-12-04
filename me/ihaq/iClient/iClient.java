@@ -11,26 +11,13 @@ import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
 
 import me.ihaq.iClient.gui.InGameGUI;
 import me.ihaq.iClient.gui.TabGUI;
-import me.ihaq.iClient.gui.GuiWindows.GuiCredits;
-import me.ihaq.iClient.module.Module;
-import me.ihaq.iClient.modules.Flight;
-import me.ihaq.iClient.modules.NoFall;
-import me.ihaq.iClient.modules.Sprint;
-import me.ihaq.iClient.modules.PlayerESP;
+import me.ihaq.iClient.modules.Module;
+import me.ihaq.iClient.modules.Combat.*;
+import me.ihaq.iClient.modules.Misc.*;
+import me.ihaq.iClient.modules.Movement.*;
+import me.ihaq.iClient.modules.Render.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
-import me.ihaq.iClient.modules.Fullbright;
-import me.ihaq.iClient.modules.MobESP;
-import me.ihaq.iClient.modules.Step;
-import me.ihaq.iClient.modules.Sucide;
-import me.ihaq.iClient.modules.ChestESP;
-import me.ihaq.iClient.modules.Damage;
-import me.ihaq.iClient.modules.Jesus;
-import me.ihaq.iClient.modules.KillAura;
-import me.ihaq.iClient.modules.KillSpam;
-import me.ihaq.iClient.modules.Respawn;
-import me.ihaq.iClient.modules.Speed;
-import me.ihaq.iClient.modules.Spider;
 
 
 public class iClient {
@@ -76,6 +63,7 @@ public class iClient {
         registerModule(new Damage());
         registerModule(new Sucide());
         registerModule(new KillAura());
+        registerModule(new LongJump());
         
         
 		Display.setTitle(Client_Name + " | " + Client_Version + " | "+ "iHaq");

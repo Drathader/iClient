@@ -1,8 +1,9 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.settings.GameSettings;
 
-public class GuiOptionButton extends GuiButton
+public class GuiOptionButton extends GUIIButton
 {
     private final GameSettings.Options enumOptions;
 

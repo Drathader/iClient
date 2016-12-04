@@ -1,11 +1,11 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Movement;
 
 import java.util.Timer;
 
 import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
 import org.lwjgl.input.Keyboard;
 
-import me.ihaq.iClient.module.Module;
+import me.ihaq.iClient.modules.Module;
 import net.minecraft.network.play.client.C03PacketPlayer;
 
 public class Spider extends Module {

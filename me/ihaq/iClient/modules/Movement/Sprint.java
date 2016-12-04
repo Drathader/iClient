@@ -1,10 +1,11 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Movement;
 
 
-import me.ihaq.iClient.module.Module;
 import net.minecraft.network.play.client.C03PacketPlayer;
 
 import org.lwjgl.input.Keyboard;
+
+import me.ihaq.iClient.modules.Module;
 
 public class Sprint extends Module{
 	

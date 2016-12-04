@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import me.ihaq.iClient.iClient;
-import me.ihaq.iClient.module.Module;
-import me.ihaq.iClient.module.Module.Category;
+import me.ihaq.iClient.modules.Module;
+import me.ihaq.iClient.modules.Module.Category;
 import me.ihaq.iClient.utils.Colors;
 import me.ihaq.iClient.utils.FontUtils;
 import me.ihaq.iClient.utils.R2DUtils;
@@ -61,7 +61,7 @@ public class TabGUI {
             Category category = Category.values()[i];
             String name = StringUtil.capitalize(category.name().toLowerCase());
             fu_mods.drawString(name,
-                    6.0F,
+                    6.5F,
                     yPos + 2, -1);
             yPos += 14;
             yPosBottom += 14;
@@ -77,7 +77,7 @@ public class TabGUI {
                 Module mod = getModsInCategory(Category.values()[categoryTab]).get(i);
                 String name = mod.name;
                 fu_mods.drawString(name,
-                        baseCategoryWidth + 6.0F,
+                        baseCategoryWidth + 6.5F,
                         yPos + 2, mod.isToggled() ? -1 : -4210753);
                 yPos += 14;
                 yPosBottom += 14;

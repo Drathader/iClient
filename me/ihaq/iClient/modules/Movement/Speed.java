@@ -1,8 +1,8 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Movement;
 
 import org.lwjgl.input.Keyboard;
 
-import me.ihaq.iClient.module.Module;
+import me.ihaq.iClient.modules.Module;
 import me.ihaq.iClient.utils.MathUtils;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.MovementInput;

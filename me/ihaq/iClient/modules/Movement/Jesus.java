@@ -1,7 +1,8 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Movement;
 
 import org.lwjgl.input.Keyboard;
-import me.ihaq.iClient.module.Module;
+
+import me.ihaq.iClient.modules.Module;
 import net.minecraft.network.play.client.C03PacketPlayer;
 
 public class Jesus extends Module {

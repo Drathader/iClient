@@ -1,10 +1,11 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 
-public class GuiSlider extends GuiButton
+public class GuiSlider extends GUIIButton
 {
     private float sliderPosition = 1.0F;
     public boolean isMouseDown;

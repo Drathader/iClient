@@ -1,9 +1,10 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class GuiLockIconButton extends GuiButton
+public class GuiLockIconButton extends GUIIButton
 {
     private boolean field_175231_o = false;
 

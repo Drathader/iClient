@@ -306,7 +306,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						// Things to do when the command is performed
 						// cmd.length == 1 means you have no arguments
 						// this command has no arguments so you just type -help
-						
+											
 						/*
 						msg(" ");
 						msg(" ");
@@ -318,14 +318,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						msg("§8>> §a-(modname) (setting)");
 						msg(" ");
 						*/
-						
-						
-						
-						msg("§7[§2i§fClient§7] §fExample Help1!");
-						msg("§7[§2i§fClient§7] §fExample Help2!");
-						msg("§7[§2i§fClient§7] §fExample Help3!");
-						msg("§7[§2i§fClient§7] §fExample Help4!");
-						msg("§7[§2i§fClient§7] §fExample Help5!");
+												
+						msg("§7[§2i§fClient§7] §fWelcome to §ai§fClient - §ai§fHaq");
+						msg("§7[§2i§fClient§7] §f-help (Shows all the aviliaiable commands!)");
+						msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
+						msg("§7[§2i§fClient§7] §f-(modname) (option)");
 					} 
 					catch (Exception exception) {
 						msg("§4Error: §c" + exception.toString());
@@ -340,7 +337,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 			} 
 			
-			else if (cmd[0].equalsIgnoreCase("-test")) {
+			else if (cmd[0].equalsIgnoreCase("-bind")) {
 				if (cmd.length != 1) {
 					try {
 						// This command has arguments
@@ -348,7 +345,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						// The first argument starts with args[1] then args[2]
 						// ...
 						// Example:
-						msg("Your arguments:");
+						msg("§7[§2i§fClient§7] Your arguments:");
 						for (String s : args) {
 							if (!s.equalsIgnoreCase("-test"))
 								msg(s);
@@ -356,11 +353,11 @@ public class EntityPlayerSP extends AbstractClientPlayer
 
 					} 
 					catch (Exception exception) {
-						msg("§4Error: §c" + exception.toString());
+						msg("§7[§2i§fClient§7] §4Error: §c" + exception.toString());
 					}
 				} 
 				else {
-					msg("§6Syntax: §2test [some arguments]");
+					msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
 				}
 			}
 

@@ -1,9 +1,10 @@
 package net.minecraft.client.gui;
 
+import me.ihaq.iClient.gui.GUIIButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 
-public class GuiListButton extends GuiButton
+public class GuiListButton extends GUIIButton
 {
     private boolean field_175216_o;
 

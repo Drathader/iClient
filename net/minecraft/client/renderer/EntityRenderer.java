@@ -4,7 +4,7 @@ import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
 
 import me.ihaq.iClient.iClient;
-import me.ihaq.iClient.module.Module;
+import me.ihaq.iClient.modules.Module;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

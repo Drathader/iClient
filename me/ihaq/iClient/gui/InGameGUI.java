@@ -8,12 +8,12 @@ import me.ihaq.iClient.iClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import me.ihaq.iClient.gui.TabGUI;
+import me.ihaq.iClient.modules.Module;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.main.Main;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
-import me.ihaq.iClient.module.Module;
 import me.ihaq.iClient.utils.Colors;
 import me.ihaq.iClient.utils.ComparatorStrings;
 import me.ihaq.iClient.utils.FontUtils;
@@ -89,7 +89,7 @@ public class InGameGUI extends GuiScreen {
                 continue;
             mods.add(module.getName()+" "+module.getMode());
         }
-        //Collections.sort(mods, new ComparatorStrings());
+        Collections.sort(mods, new ComparatorStrings());
 		for (String m : mods){
 			fu_mods.drawString(m, (GuiScreen.width - 5) - (fu_mods.getWidth(m)), count, Colors.getRainbow(0L, 1.0F).hashCode());
 			count += 10;
@@ -99,7 +99,7 @@ public class InGameGUI extends GuiScreen {
     public int getPing(){
     	int ping = 0;
         try {
-            ping = mc.thePlayer.sendQueue.getPlayerInfo(mc.thePlayer.getUniqueID()).getResponseTime();
+            ping = (int) mc.thePlayer.sendQueue.getPlayerInfo(mc.thePlayer.getUniqueID()).getResponseTime();
             return ping;
         } catch (Exception x) {
             ping = 0;

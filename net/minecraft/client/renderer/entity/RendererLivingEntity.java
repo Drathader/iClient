@@ -3,7 +3,7 @@ package net.minecraft.client.renderer.entity;
 import com.google.common.collect.Lists;
 
 import me.ihaq.iClient.iClient;
-import me.ihaq.iClient.modules.PlayerESP;
+import me.ihaq.iClient.modules.Render.PlayerESP;
 import me.ihaq.iClient.utils.Colors;
 
 import java.nio.FloatBuffer;

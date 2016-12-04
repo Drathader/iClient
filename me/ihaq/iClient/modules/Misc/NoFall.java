@@ -1,14 +1,15 @@
-package me.ihaq.iClient.modules;
+package me.ihaq.iClient.modules.Misc;
 
 
 import net.minecraft.network.play.client.C03PacketPlayer;
 import org.lwjgl.input.Keyboard;
-import me.ihaq.iClient.module.Module;
+
+import me.ihaq.iClient.modules.Module;
  
 public class NoFall extends Module{
        
     public NoFall() {
-        super("NoFall", Keyboard.KEY_N, Category.MOVEMENT,"");
+        super("NoFall", Keyboard.KEY_N, Category.MISC,"");
     }
        
     @Override
