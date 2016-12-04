@@ -1,5 +1,6 @@
 package net.minecraft.client.gui;
 
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,6 +23,7 @@ import com.google.common.collect.Lists;
 import me.ihaq.iClient.iClient;
 import me.ihaq.iClient.gui.GUIIButton;
 import me.ihaq.iClient.gui.GuiWindows.GuiCredits;
+import me.ihaq.iClient.utils.FontUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -73,9 +75,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
     /** Link to the Mojang Support about minimum requirements */
     private String openGLWarningLink;
-    private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
-    private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
-
+    //private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
+    //private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
+    //private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/logo.png");
+    
     /** An array of all the paths to the panorama pictures. */
     private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("textures/gui/title/background/panorama_0.png"), new ResourceLocation("textures/gui/title/background/panorama_1.png"), new ResourceLocation("textures/gui/title/background/panorama_2.png"), new ResourceLocation("textures/gui/title/background/panorama_3.png"), new ResourceLocation("textures/gui/title/background/panorama_4.png"), new ResourceLocation("textures/gui/title/background/panorama_5.png")};
     public static final String field_96138_a = "Please click " + EnumChatFormatting.UNDERLINE + "here" + EnumChatFormatting.RESET + " for more information.";
@@ -89,9 +92,13 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
     /** Minecraft Realms button. */
     private GuiButton realmsButton;
+    
+    /** My Font */
+    private static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
 
     public GuiMainMenu()
     {
+/*
         this.openGLWarning2 = field_96138_a;
         this.splashText = "missingno";
         BufferedReader bufferedreader = null;
@@ -105,7 +112,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             while ((s = bufferedreader.readLine()) != null)
             {
                 s = s.trim();
-
                 if (!s.isEmpty())
                 {
                     list.add(s);
@@ -143,7 +149,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
                 }
             }
         }
-
+*/
         this.updateCounter = RANDOM.nextFloat();
         this.openGLWarning1 = "";
 
@@ -522,10 +528,24 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         int i = 274;
         int j = this.width / 2 - i / 2;
         int k = 30;
+        int var7 = width / 2 - 137;
         this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
         this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
-        this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        
+        
+        
+        
+          
+        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glColorMask(true, true, true, false);
+        this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/title/logo.png"));
+        this.drawTexturedModalRect(var7 + 40, 30, 0, 0, 193, 80);
+        GL11.glDisable(3042);       
+               
+        this.drawDefaultBackground(); //the dirt background
+             
 
         if ((double)this.updateCounter < 1.0E-4D)
         {
@@ -556,9 +576,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
             s = s + " Demo";
         }
 
-        this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
+        fu_mods.drawString(s, 2, this.height - 12, -1);
         String s1 = "Copyright Mojang AB. Do not distribute!";
-        this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
+        fu_mods.drawString(s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 12, -1);
 
         if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
         {

@@ -63,6 +63,7 @@ public class iClient {
         registerModule(new Damage());
         registerModule(new Sucide());
         registerModule(new KillAura());
+        registerModule(new Criticals());
         registerModule(new LongJump());
         
         

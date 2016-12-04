@@ -10,44 +10,35 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 
-public class GUIIButton extends GuiButton{
+public class GUIIButton extends GuiButton {
 	private int fad3;
 	private final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
-	
 
-    public GUIIButton(final int buttonId, final int x, final int y, final String buttonText){
-        this(buttonId, x, y, 200, 20, buttonText);
-    }
+	public GUIIButton(final int buttonId, final int x, final int y, final String buttonText) {
+		this(buttonId, x, y, 200, 20, buttonText);
+	}
 
-    public GUIIButton(final int buttonId,final int x,final int y,final int widthIn,final int heightIn,final String buttonText) {
-        super(buttonId, x, y, widthIn, heightIn, buttonText);
-    }
+	public GUIIButton(final int buttonId, final int x, final int y, final int widthIn, final int heightIn,
+			final String buttonText) {
+		super(buttonId, x, y, widthIn, heightIn, buttonText);
+	}
 
-    @Override
-    public void drawButton(Minecraft mc, int mouseX, int mouseY){
-    	if (this.visible && !this.displayString.equals("HIDETHISBUTTON")) {
-        	
-            this.hovered = (mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height);
-                if(!hovered){
-                    if(this.fad3 != 100){
-                        this.fad3 += 5;
-                    }
-                }
-                else{
-                    if(this.fad3 <= 40){
-                        return;
-                    }
-                    if(this.fad3 != 70){
-                        this.fad3 -= 5;
-                    }
-                }
-                final Color a = new Color(0, 0, 0,this.fad3);
-                final FontRenderer var4 = mc.fontRendererObj;
-                
-                
-                //Gui.drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, a);
-                R2DUtils.drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, isMouseOver() ? -1610612736 : 1610612736);
-                fu_mods.drawCenteredString(this.displayString ,this.xPosition + this.width / 2, this.yPosition + (this.height - 12) / 2, -1);
-        }
-    }
+	@Override
+	public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+		if (this.visible && !this.displayString.equals("HIDETHISBUTTON")) {
+
+			this.hovered = (mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width
+					&& mouseY < this.yPosition + this.height);
+
+			final Color a = new Color(0, 0, 0, this.fad3);
+			final FontRenderer var4 = mc.fontRendererObj;
+
+			// Gui.drawRect(this.xPosition, this.yPosition, this.xPosition +
+			// this.width, this.yPosition + this.height, a);
+			R2DUtils.drawRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height,
+					isMouseOver() ? -1610612736 : 1610612736);
+			fu_mods.drawCenteredString(this.displayString, this.xPosition + this.width / 2,
+					this.yPosition + (this.height - 12) / 2, -1);
+		}
+	}
 }

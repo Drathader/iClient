@@ -21,17 +21,16 @@ import me.ihaq.iClient.utils.R2DUtils;
  
 public class InGameGUI extends GuiScreen {
 
-	private FontUtils fu_title;
-	private FontUtils fu_mods;
+
 	private ArrayList<String> mods = new ArrayList<String>();
+	public static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
+	private static final FontUtils fu_title =  new FontUtils("Audiowide", Font.PLAIN, 30);
 
 	
 	
     public InGameGUI () {  
     	TabGUI.init();
         this.mc = Minecraft.getMinecraft();  
-        this.fu_title = new FontUtils("Audiowide", Font.PLAIN, 30);
-        this.fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
     }
    
     @SuppressWarnings("incomplete-switch")
@@ -63,7 +62,7 @@ public class InGameGUI extends GuiScreen {
         double playerY = Math.round(mc.thePlayer.posY*100.0)/100.0;
         double playerZ = Math.round(mc.thePlayer.posZ*100.0)/100.0;
         
-        drawRect(5,80,53,119, -1610612736);
+        drawRect(5,80,TabGUI.baseCategoryWidth+2,119, -1610612736);
         fu_mods.drawString("X: \u00A7f"+playerX, 6, 78, Colors.getRainbow(0L, 1.0F).hashCode());
         fu_mods.drawString("Y: \u00A7f"+playerY, 6, 88, Colors.getRainbow(0L, 1.0F).hashCode());
         fu_mods.drawString("Z: \u00A7f"+playerZ, 6, 98, Colors.getRainbow(0L, 1.0F).hashCode());

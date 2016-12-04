@@ -19,7 +19,7 @@ public class TabGUI {
     private static final int INSIDE_COLOR = -1610612736;
     private static final int BORDER_COLOR = 2013265920;
     private static final int COMPONENT_HEIGHT = 14;
-    private static int baseCategoryWidth;
+    static int baseCategoryWidth;
     private static int baseCategoryHeight;
     private static int baseModWidth;
     private static int baseModHeight;
@@ -32,7 +32,7 @@ public class TabGUI {
     private static int modTargetPosition = 15;
     private static boolean transitionQuickly;
     private static long lastUpdateTime;
-    private static FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
+    private static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
     
     public static void init() {
         int highestWidth = 0;
@@ -69,7 +69,7 @@ public class TabGUI {
         if (section == Section.MODS) {
             R2DUtils.drawRect(baseCategoryWidth + 4, categoryPosition - 1, baseCategoryWidth +  baseModWidth + 10,
                     categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, -1610612736);
-            R2DUtils.drawRect(baseCategoryWidth + 5, modPosition, baseCategoryWidth + baseModWidth + 10,
+            R2DUtils.drawRect(baseCategoryWidth + 5, modPosition, baseCategoryWidth + baseModWidth + 9,
                     modPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
             yPos = categoryPosition;
             yPosBottom = categoryPosition + 14;

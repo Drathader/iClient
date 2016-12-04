@@ -74,12 +74,12 @@ public class Module {
         return this.toggled;
     }
     
-    public String getMode() {
-        return this.mode;
-    }
-    
     public void setMode(String m) {
         this.mode = m;
+    }
+    
+    public String getMode() {
+        return this.mode;
     }
    
 }
