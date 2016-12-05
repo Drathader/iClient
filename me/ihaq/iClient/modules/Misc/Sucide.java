@@ -11,7 +11,7 @@ public class Sucide extends Module{
 	
 
 	public Sucide() {
-        super("Sucide", Keyboard.KEY_X, Category.MISC,"");
+        super("Sucide", Keyboard.KEY_NONE, Category.MISC,"");
 	}
 	
 	@Override

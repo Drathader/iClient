@@ -8,10 +8,10 @@ import me.ihaq.iClient.modules.Module;
 import me.ihaq.iClient.utils.RenderUtils;
 
 public class ChestESP extends Module{
-	private static String mode;
+	private static String mode = "outline";
 	
 	public ChestESP() {
-		super("ChestESP", Keyboard.KEY_K, Category.RENDER, mode);
+		super("ChestESP", Keyboard.KEY_NONE, Category.RENDER, mode);
 	}
 	
 	public void onRender() {
@@ -27,6 +27,10 @@ public class ChestESP extends Module{
 				RenderUtils.blockESPBox(((TileEntityChest)o).getPos());
 			}
 		}
+	}
+
+	public static String getESPMode() {
+		return mode;
 	}
 
 }

@@ -37,13 +37,8 @@ public class Spider extends Module {
 			}
 			mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX,mc.thePlayer.posY, mc.thePlayer.posZ, true));
 
-			if(mc.thePlayer.onGround){
-				lastJumpPos = mc.thePlayer.posY;
-				mc.thePlayer.jump();
-				if(mc.thePlayer.posY == lastJumpPos + 1){
-					mc.thePlayer.jump();
-				}
-			}
+			lastJumpPos = mc.thePlayer.posY;
+			mc.thePlayer.jump();
 			
 
 		}

@@ -22,7 +22,7 @@ public class Speed extends Module {
 	private static String mode;
  
     public Speed(){
-		super("Speed", Keyboard.KEY_H, Category.MOVEMENT, mode);
+		super("Speed", Keyboard.KEY_V, Category.MOVEMENT, mode);
 	}
  
     @Override

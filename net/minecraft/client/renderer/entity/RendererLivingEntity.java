@@ -3,6 +3,7 @@ package net.minecraft.client.renderer.entity;
 import com.google.common.collect.Lists;
 
 import me.ihaq.iClient.iClient;
+import me.ihaq.iClient.modules.Render.MobESP;
 import me.ihaq.iClient.modules.Render.PlayerESP;
 import me.ihaq.iClient.utils.Colors;
 
@@ -276,7 +277,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
                 GlStateManager.alphaFunc(516, 0.003921569F);
             }
             // TODO
-            if(iClient.getModules().get(4).isToggled()){
+            if(iClient.getModules().get(4).isToggled() && PlayerESP.getESPMode().equals("outline")){
             		if(entitylivingbaseIn instanceof EntityPlayer){
             			this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_,
             		            p_77036_7_);
@@ -310,10 +311,38 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
             		          GL11.glEnable(2929);
             		          GL11.glPopAttrib();
             		}
+            }  
+            if(iClient.getModules().get(4).isToggled() && PlayerESP.getESPMode().equals("wireframe")){
+            	if(entitylivingbaseIn instanceof EntityPlayer){
+        			GL11.glPushMatrix();
+                    {
+                    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+                    	{
+                    		GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+                    		GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    		GL11.glDisable(GL11.GL_LIGHTING);
+                    		GL11.glDisable(GL11.GL_DEPTH_TEST);
+                    		
+                    		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+                    		
+                    		GL11.glEnable(GL11.GL_BLEND);
+                    		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
+                    		
+                    		
+                    		GL11.glLineWidth(3F);
+                    		GL11.glColor3f(0.0F, 1.0F, 0.0F);
+          		          	if (entitylivingbaseIn.hurtTime > 0) {
+          		          		GL11.glColor3f(1.0F, 0.0F, 0.0F);
+          		          	}
+                    		
+                    		this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                    	}
+                    	GL11.glPopAttrib();
+                    }
+                    GL11.glPopMatrix();
+            	}
             }
-            this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
-            
-            if(iClient.getModules().get(5).isToggled()){
+            if(iClient.getModules().get(5).isToggled() && MobESP.getESPMode().equals("outline")){
         		if(entitylivingbaseIn instanceof EntityLiving){
         			this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_,
         		            p_77036_7_);
@@ -347,7 +376,37 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         		          GL11.glEnable(2929);
         		          GL11.glPopAttrib();
         		}
-        }
+            }
+            if(iClient.getModules().get(5).isToggled() && MobESP.getESPMode().equals("wireframe")){
+            	if(entitylivingbaseIn instanceof EntityLiving){
+        			GL11.glPushMatrix();
+                    {
+                    	GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+                    	{
+                    		GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+                    		GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    		GL11.glDisable(GL11.GL_LIGHTING);
+                    		GL11.glDisable(GL11.GL_DEPTH_TEST);
+                    		
+                    		GL11.glEnable(GL11.GL_LINE_SMOOTH);
+                    		
+                    		GL11.glEnable(GL11.GL_BLEND);
+                    		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
+                    		
+                    		
+                    		GL11.glLineWidth(3F);
+                    		GL11.glColor3f(0.0F, 1.0F, 0.0F);
+          		          	if (entitylivingbaseIn.hurtTime > 0) {
+          		          		GL11.glColor3f(1.0F, 0.0F, 0.0F);
+          		          	}
+                    		
+                    		this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
+                    	}
+                    	GL11.glPopAttrib();
+                    }
+                    GL11.glPopMatrix();
+            	}
+            }
         this.mainModel.render(entitylivingbaseIn, p_77036_2_, p_77036_3_, p_77036_4_, p_77036_5_, p_77036_6_, p_77036_7_);
             
             if (flag1)

@@ -12,7 +12,7 @@ public class Step extends Module {
 	private static String mode;
 
 	public Step() {
-		super("Step", Keyboard.KEY_H, Category.MOVEMENT, mode);
+		super("Step", Keyboard.KEY_NONE, Category.MOVEMENT, mode);
 	}
 
 	@Override

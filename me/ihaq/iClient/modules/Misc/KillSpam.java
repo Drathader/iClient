@@ -11,7 +11,7 @@ public class KillSpam extends Module{
 	
 
 	public KillSpam() {
-        super("KillSpam", Keyboard.KEY_X, Category.MISC,"");
+        super("KillSpam", Keyboard.KEY_NONE, Category.MISC,"");
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ public class Damage extends Module{
 	
 
 	public Damage() {
-        super("Damage", Keyboard.KEY_X, Category.MISC,"");
+        super("Damage", Keyboard.KEY_NONE, Category.MISC,"");
 	}
 	
 	@Override

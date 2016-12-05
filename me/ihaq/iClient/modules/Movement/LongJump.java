@@ -59,7 +59,7 @@ public class LongJump extends Module{
     boolean off = false;
 	
 	public LongJump() {
-		super("LongJump", Keyboard.KEY_F, Category.RENDER, mode);
+		super("LongJump", Keyboard.KEY_F, Category.MOVEMENT, mode);
 		setMode("\u00A7f[JUMPMAN]");
 	}
 	

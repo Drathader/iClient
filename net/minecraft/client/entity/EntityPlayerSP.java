@@ -1,6 +1,8 @@
 package net.minecraft.client.entity;
 
 import me.ihaq.iClient.iClient;
+import me.ihaq.iClient.modules.Render.MobESP;
+import me.ihaq.iClient.modules.Render.PlayerESP;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -296,6 +298,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
      * Sends a chat message from the player. Args: chatMessage
      */
 	public void sendChatMessage(String message) {
+		
 		// TODO - iClient
 		String[] cmd = message.split(" ");
 		if (cmd[0].startsWith("-")) {
@@ -322,7 +325,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						msg("§7[§2i§fClient§7] §fWelcome to §ai§fClient - §ai§fHaq");
 						msg("§7[§2i§fClient§7] §f-help (Shows all the aviliaiable commands!)");
 						msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
-						msg("§7[§2i§fClient§7] §f-(modname) (option)");
+						msg("§7[§2i§fClient§7] §f-(catagory) (modname) (option)");
 					} 
 					catch (Exception exception) {
 						msg("§4Error: §c" + exception.toString());
@@ -358,6 +361,74 @@ public class EntityPlayerSP extends AbstractClientPlayer
 				} 
 				else {
 					msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
+				}
+			}
+			
+			else if (cmd[0].equalsIgnoreCase("-render")) {
+				if (cmd.length != 1) {
+					try {
+						// This command has arguments
+						String[] args = cmd;
+						// The first argument starts with args[1] then args[2]
+						// ...
+						// Example:
+						
+						if (args[1].equalsIgnoreCase("playeresp")) {
+							String[] argsplayeresp = args;
+							if (argsplayeresp.length != 2) {
+								if (argsplayeresp[2].equalsIgnoreCase("outline")) {
+									msg("§7[§2i§fClient§7] PlayerESP mode set to §fOUTLINE§7!");
+									PlayerESP.mode = "outline";
+								} 
+								else if (argsplayeresp[2].equalsIgnoreCase("box")) {
+									msg("§7[§2i§fClient§7] PlayerESP mode set to §fBOX§7!");
+									PlayerESP.mode = "box";
+								}
+								else if (argsplayeresp[2].equalsIgnoreCase("wireframe")) {
+									msg("§7[§2i§fClient§7] PlayerESP mode set to §fWIREFRAME§7!");
+									PlayerESP.mode = "box";
+								} 
+								else {
+									msg("§7[§2i§fClient§7] §f-render playeresp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
+								}
+							}
+							else{
+								msg("§7[§2i§fClient§7] §f-render playeresp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
+							}
+						}
+						else if (args[1].equalsIgnoreCase("mobesp")) {
+							String[] argsmobesp = args;
+							if (argsmobesp.length != 2) {
+								if (argsmobesp[2].equalsIgnoreCase("outline")) {
+									msg("§7[§2i§fClient§7] MobESP mode set to §fOUTLINE§7!");
+									MobESP.mode = "outline";
+								} 
+								else if (argsmobesp[2].equalsIgnoreCase("box")) {
+									msg("§7[§2i§fClient§7] MobESP mode set to §fBOX§7!");
+									MobESP.mode = "box";
+								} 
+								else if (argsmobesp[2].equalsIgnoreCase("wireframe")) {
+									msg("§7[§2i§fClient§7] MobESP mode set to §fWIREFRAME§7!");
+									MobESP.mode = "wireframe";
+								} 
+								else {
+									msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7)");
+								}
+							}
+							else{
+								msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
+							}
+						}
+						else{
+							msg("§7[§2i§fClient§7] §f-render (mode) (option)");
+						}
+					} 
+					catch (Exception exception) {
+						msg("§7[§2i§fClient§7] §4Error: §c" + exception.toString());
+					}
+				} 
+				else {
+					msg("§7[§2i§fClient§7] §f-render (modname) (option)");
 				}
 			}
 

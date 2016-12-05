@@ -10,7 +10,7 @@ public class Fullbright extends Module{
     private float gamaSetting = 0F;
    
     public Fullbright() {
-        super("Fullbright", Keyboard.KEY_B,Category.RENDER,"");
+        super("Fullbright", Keyboard.KEY_NONE,Category.RENDER,"");
     }
        
     @Override

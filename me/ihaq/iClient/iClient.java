@@ -35,8 +35,8 @@ public class iClient {
 		//////////////////////////
 		YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
         YggdrasilUserAuthentication auth = (YggdrasilUserAuthentication)service.createUserAuthentication(Agent.MINECRAFT);
-        auth.setUsername("ole.zimmermann@gmx.de");
-        auth.setPassword("ole2002");
+        auth.setUsername("leon.rock31ago@hotmail.com");
+        auth.setPassword("33521358");
         try {
         	auth.logIn();
             Minecraft.getMinecraft().session = new Session(auth.getSelectedProfile().getName(), auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), "legacy");
