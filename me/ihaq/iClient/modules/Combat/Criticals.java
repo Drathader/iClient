@@ -14,43 +14,47 @@ import java.util.Iterator;
 
 public class Criticals extends Module {
 
-	private static String mode = "";
-	int triggerDelay;
+	private static String mode = "PACKETS";
+	public static boolean active;
 
 	public Criticals() {
 		super("Criticals", Keyboard.KEY_NONE, Category.COMBAT, mode);
 	}
 	
 	@Override
-	public void onDisable(){
-		mode = "";
+	public void onEnable(){
+		 active = true;
 	}
 	
 	@Override
-	public void onEnable(){
-		mode = "";
+	public void onDisable(){
+		 active = false;
 	}
 	
-		
 	@Override
 	public void onUpdate() {
 
 		if (!this.isToggled())
 			return;
-		
-		jumpMode();
-		super.onUpdate();
+
+		if(mode.equals("JUMP")){
+			setMode("\u00A7f[JUMP]");
+		}else if(mode.equals("PACKETS")){
+			setMode("\u00A7f[PACKETS]");
+		}
 	}
-	
-	
-	public void jumpMode() {
-		setMode("\u00A7f[JUMP]");
-		mode = "JUMP";	
+
+	static void packets() {
+		mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.05D, mc.thePlayer.posZ, false));
+		mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false));
+		mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.012511D, mc.thePlayer.posZ, false));
+		mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ, false));
 	}
-	
-	public static String getCriticalsMode(){
+
+	public static String getCriticalsMode() {
 		return mode;
 	}
 	
+
 
 }

@@ -20,13 +20,9 @@ import me.ihaq.iClient.utils.FontUtils;
 import me.ihaq.iClient.utils.R2DUtils;
  
 public class InGameGUI extends GuiScreen {
-
-
-	private ArrayList<String> mods = new ArrayList<String>();
-	public static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
-	private static final FontUtils fu_title =  new FontUtils("Audiowide", Font.PLAIN, 30);
-
 	
+	private ArrayList<String> mods = new ArrayList<String>();
+	private final FontUtils fu_title = new FontUtils("Audiowide", Font.PLAIN, 30);
 	
     public InGameGUI () {  
     	TabGUI.init();
@@ -62,24 +58,27 @@ public class InGameGUI extends GuiScreen {
         double playerY = Math.round(mc.thePlayer.posY*100.0)/100.0;
         double playerZ = Math.round(mc.thePlayer.posZ*100.0)/100.0;
         
-        drawRect(5,80,TabGUI.baseCategoryWidth+2,119, -1610612736);
-        fu_mods.drawString("X: \u00A7f"+playerX, 6, 78, Colors.getRainbow(0L, 1.0F).hashCode());
-        fu_mods.drawString("Y: \u00A7f"+playerY, 6, 88, Colors.getRainbow(0L, 1.0F).hashCode());
-        fu_mods.drawString("Z: \u00A7f"+playerZ, 6, 98, Colors.getRainbow(0L, 1.0F).hashCode());
-        fu_mods.drawString("FPS: \u00A7f"+ playerFPS, 6, 108, Colors.getRainbow(0L, 1.0F).hashCode());
+        drawRect(5,80, TabGUI.baseCategoryWidth+2, 121, -1610612736);
+        mc.fontRendererObj.drawString("X: \u00A7f"+playerX, 6, 82, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("Y: \u00A7f"+playerY, 6, 92, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("Z: \u00A7f"+playerZ, 6, 102, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("FPS: \u00A7f"+ playerFPS, 6, 112, Colors.getRainbow(0L, 1.0F).hashCode());
         
-        fu_title.drawString("i"+"\u00A7fClient", 5, 2, Colors.getRainbow(0L, 1.0F).hashCode());
-        TabGUI.init();
-        TabGUI.render();
+
         
         if(mc.ingameGUI.getChatGUI().getChatOpen()){
         	//YAY
         }
         else{
-        	fu_mods.drawString("Version: \u00A7f1.8", 5, GuiScreen.height-15, Colors.getRainbow(0L, 1.0F).hashCode());
-        	fu_mods.drawString("Ping: \u00A7f"+ getPing() + "ms", 5, GuiScreen.height-25, Colors.getRainbow(0L, 1.0F).hashCode());
+        	mc.fontRendererObj.drawString("Version: \u00A7f1.8", 5, GuiScreen.height-15, Colors.getRainbow(0L, 1.0F).hashCode());
+        	mc.fontRendererObj.drawString("Ping: \u00A7f"+ getPing() + "ms", 5, GuiScreen.height-25, Colors.getRainbow(0L, 1.0F).hashCode());
         	
         }
+        
+        mc.fontRendererObj.drawString("i"+"\u00A7fClient", 5, 2, Colors.getRainbow(0L, 1.0F).hashCode());
+        
+        TabGUI.init();
+        TabGUI.render();
         
         mods.clear();
         int count = 5;     
@@ -90,7 +89,7 @@ public class InGameGUI extends GuiScreen {
         }
         Collections.sort(mods, new ComparatorStrings());
 		for (String m : mods){
-			fu_mods.drawString(m, (GuiScreen.width - 5) - (fu_mods.getWidth(m)), count, Colors.getRainbow(0L, 1.0F).hashCode());
+			mc.fontRendererObj.drawString(m, (GuiScreen.width - 5) - (mc.fontRendererObj.getStringWidth(m)), count, Colors.getRainbow(0L, 1.0F).hashCode());
 			count += 10;
 		}       
     }

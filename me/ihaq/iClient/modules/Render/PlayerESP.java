@@ -32,11 +32,15 @@ public class PlayerESP extends Module {
 
 		if (mode.equals("outline")) {
 			setMode("\u00A7f[OUTLINE]");
+			mode = "outline";
 		} else if (mode.equals("box")) {
-			box();
+			mode = "box";
+			setMode("\u00A7f[BOX]");
+			box();		
 		}
 		else if (mode.equals("wireframe")) {
 			setMode("\u00A7f[WIREFRAME]");
+			mode = "outline";
 		}
 	}
 
@@ -44,9 +48,8 @@ public class PlayerESP extends Module {
 		return mode;
 	}
 
-	public void box() {
-		setMode("\u00A7f[BOX]");
-		mode = "box";
+	public void box() {		
+		
 		for (Object theObject : mc.theWorld.loadedEntityList) {
 			for (Object e : mc.theWorld.loadedEntityList) {
 				if (e instanceof EntityPlayer) {

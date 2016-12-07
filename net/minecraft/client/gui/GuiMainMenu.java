@@ -76,10 +76,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 
 	/** Link to the Mojang Support about minimum requirements */
 	private String openGLWarningLink;
-	// private static final ResourceLocation splashTexts = new
-	// ResourceLocation("texts/splashes.txt");
-	// private static final ResourceLocation minecraftTitleTextures = new
-	// ResourceLocation("textures/gui/title/minecraft.png");
+	private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
+	private static final ResourceLocation minecraftTitleTextures = new ResourceLocation(
+			"textures/gui/title/minecraft.png");
 	// private static final ResourceLocation minecraftTitleTextures = new
 	// ResourceLocation("textures/gui/title/logo.png");
 
@@ -105,29 +104,48 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 	private GuiButton realmsButton;
 
 	/** My Font */
-	private static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
+	//private static final FontUtils Minecraft.getMinecraft().fontRendererObj = new FontUtils("Audiowide", Font.PLAIN, 18);
 
 	public GuiMainMenu() {
-		/*
-		 * this.openGLWarning2 = field_96138_a; this.splashText = "missingno";
-		 * BufferedReader bufferedreader = null;
-		 * 
-		 * try { List<String> list = Lists.<String>newArrayList();
-		 * bufferedreader = new BufferedReader(new
-		 * InputStreamReader(Minecraft.getMinecraft().getResourceManager().
-		 * getResource(splashTexts).getInputStream(), Charsets.UTF_8)); String
-		 * s;
-		 * 
-		 * while ((s = bufferedreader.readLine()) != null) { s = s.trim(); if
-		 * (!s.isEmpty()) { list.add(s); } }
-		 * 
-		 * if (!list.isEmpty()) { while (true) { this.splashText =
-		 * (String)list.get(RANDOM.nextInt(list.size()));
-		 * 
-		 * if (this.splashText.hashCode() != 125780783) { break; } } } } catch
-		 * (IOException var12) { ; } finally { if (bufferedreader != null) { try
-		 * { bufferedreader.close(); } catch (IOException var11) { ; } } }
-		 */
+		this.openGLWarning2 = field_96138_a;
+		this.splashText = "missingno";
+		BufferedReader bufferedreader = null;
+
+		try {
+			List<String> list = Lists.<String>newArrayList();
+			bufferedreader = new BufferedReader(new InputStreamReader(
+					Minecraft.getMinecraft().getResourceManager().getResource(splashTexts).getInputStream(),
+					Charsets.UTF_8));
+			String s;
+
+			while ((s = bufferedreader.readLine()) != null) {
+				s = s.trim();
+				if (!s.isEmpty()) {
+					list.add(s);
+				}
+			}
+
+			if (!list.isEmpty()) {
+				while (true) {
+					this.splashText = (String) list.get(RANDOM.nextInt(list.size()));
+
+					if (this.splashText.hashCode() != 125780783) {
+						break;
+					}
+				}
+			}
+		} catch (IOException var12) {
+			;
+		} finally {
+			if (bufferedreader != null) {
+				try {
+					bufferedreader.close();
+				} catch (IOException var11) {
+					;
+				}
+			}
+		}
+
 		this.updateCounter = RANDOM.nextFloat();
 		this.openGLWarning1 = "";
 
@@ -194,7 +212,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 				I18n.format("menu.options", new Object[0])));
 		this.buttonList.add(
 				new GUIIButton(4, this.width / 2 + 2, j + 72 + 12, 98, 20, I18n.format("menu.quit", new Object[0])));
-		// this.buttonList.add(new GuiButtonLanguage(5, this.width / 2 - 124, j
+		// this.buttonList.add(new GUIIButtonLanguage(5, this.width / 2 - 124, j
 		// + 72 + 12));
 
 		synchronized (this.threadLock) {
@@ -229,7 +247,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 	private void addDemoButtons(int p_73972_1_, int p_73972_2_) {
 		this.buttonList
 				.add(new GUIIButton(11, this.width / 2 - 100, p_73972_1_, I18n.format("menu.playdemo", new Object[0])));
-		this.buttonList.add(this.buttonResetDemo = new GuiButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1,
+		this.buttonList.add(this.buttonResetDemo = new GUIIButton(12, this.width / 2 - 100, p_73972_1_ + p_73972_2_ * 1,
 				I18n.format("menu.resetdemo", new Object[0])));
 		ISaveFormat isaveformat = this.mc.getSaveLoader();
 		WorldInfo worldinfo = isaveformat.getWorldInfo("Demo_World");
@@ -482,20 +500,19 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 		int i = 274;
 		int j = this.width / 2 - i / 2;
 		int k = 30;
-		int var7 = width / 2 - 137;
+		
 		this.drawGradientRect(0, 0, this.width, this.height, -2130706433, 16777215);
 		this.drawGradientRect(0, 0, this.width, this.height, 0, Integer.MIN_VALUE);
-
-		/*
-		 * GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f); GL11.glEnable(3042);
-		 * GL11.glBlendFunc(770, 771); GL11.glColorMask(true, true, true,
-		 * false); this.mc.getTextureManager().bindTexture(new
-		 * ResourceLocation("textures/gui/title/logo.png"));
-		 * this.drawTexturedModalRect(var7 + 40, 30, 0, 0, 193, 80);
-		 * GL11.glDisable(3042);
-		 */
-
-		//this.drawDefaultBackground(); // the dirt background
+		
+		int var7 = width / 2 - 137;
+		GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
+		GL11.glEnable(3042);
+		GL11.glBlendFunc(770, 771);
+		GL11.glColorMask(true, true, true, false);
+		this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
+		this.drawTexturedModalRect(var7 + 40, 30, 0, 0, 193, 80);
+		GL11.glDisable(3042);
+		this.drawDefaultBackground(); // the dirt background
 
 		if ((double) this.updateCounter < 1.0E-4D) {
 			this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 99, 44);
@@ -523,9 +540,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 			s = s + " Demo";
 		}
 
-		fu_mods.drawString(s, 2, this.height - 12, -1);
+		fontRendererObj.drawString(s, 2, this.height - 10, -1);
 		String s1 = "Copyright Mojang AB. Do not distribute!";
-		fu_mods.drawString(s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 12, -1);
+		fontRendererObj.drawString(s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
 
 		if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
 			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1,

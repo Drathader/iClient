@@ -228,7 +228,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     private RenderManager renderManager;
     private RenderItem renderItem;
     private ItemRenderer itemRenderer;
-    public EntityPlayerSP thePlayer;
+    public static EntityPlayerSP thePlayer;
     private Entity renderViewEntity;
     public Entity pointedEntity;
     public EffectRenderer effectRenderer;
@@ -240,7 +240,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     public FontRenderer standardGalacticFontRenderer;
 
     /** The GuiScreen that's being displayed at the moment. */
-    public GuiScreen currentScreen;
+    public static GuiScreen currentScreen;
     public LoadingScreenRenderer loadingScreen;
     public EntityRenderer entityRenderer;
 

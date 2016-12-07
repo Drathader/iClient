@@ -1,6 +1,7 @@
 package net.minecraft.client.entity;
 
 import me.ihaq.iClient.iClient;
+import me.ihaq.iClient.modules.Render.Fullbright;
 import me.ihaq.iClient.modules.Render.MobESP;
 import me.ihaq.iClient.modules.Render.PlayerESP;
 import net.minecraft.client.Minecraft;
@@ -309,18 +310,6 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						// Things to do when the command is performed
 						// cmd.length == 1 means you have no arguments
 						// this command has no arguments so you just type -help
-											
-						/*
-						msg(" ");
-						msg(" ");
-						msg("§8>> §ai§fClient - §ai§fHaq §8<<");
-						msg(" ");
-						msg("§8Type any of these Commands:");
-						msg("§8>> §a-help (Shows all the aviliaiable commands!)");
-						msg("§8>> §a-bind (modulename) (keyname)");
-						msg("§8>> §a-(modname) (setting)");
-						msg(" ");
-						*/
 												
 						msg("§7[§2i§fClient§7] §fWelcome to §ai§fClient - §ai§fHaq");
 						msg("§7[§2i§fClient§7] §f-help (Shows all the aviliaiable commands!)");
@@ -352,6 +341,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 						for (String s : args) {
 							if (!s.equalsIgnoreCase("-test"))
 								msg(s);
+								
 						}
 
 					} 
@@ -362,8 +352,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 				else {
 					msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
 				}
-			}
-			
+			}			
 			else if (cmd[0].equalsIgnoreCase("-render")) {
 				if (cmd.length != 1) {
 					try {
@@ -386,7 +375,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 								}
 								else if (argsplayeresp[2].equalsIgnoreCase("wireframe")) {
 									msg("§7[§2i§fClient§7] PlayerESP mode set to §fWIREFRAME§7!");
-									PlayerESP.mode = "box";
+									PlayerESP.mode = "wireframe";
 								} 
 								else {
 									msg("§7[§2i§fClient§7] §f-render playeresp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
@@ -412,11 +401,30 @@ public class EntityPlayerSP extends AbstractClientPlayer
 									MobESP.mode = "wireframe";
 								} 
 								else {
-									msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7)");
+									msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
 								}
 							}
 							else{
 								msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
+							}
+						}
+						else if (args[1].equalsIgnoreCase("fullbright")) {
+							String[] argsfullbright = args;
+							if (argsfullbright.length != 2) {
+								if (argsfullbright[2].equalsIgnoreCase("gamma")) {
+									msg("§7[§2i§fClient§7] FullBright mode set to §fGAMMA§7!");
+									Fullbright.mode = "gamma";
+								} 
+								else if (argsfullbright[2].equalsIgnoreCase("potion")) {
+									msg("§7[§2i§fClient§7] FullBright mode set to §fPOTION§7!");
+									Fullbright.mode = "potion";
+								} 
+								else {
+									msg("§7[§2i§fClient§7] §f-render fullbright §7(§fGAMMA§7/§fPOTION§7)");
+								}
+							}
+							else{
+								msg("§7[§2i§fClient§7] §f-render fullbright §7(§fGAMMA§7/§fPOTION§7)");
 							}
 						}
 						else{
@@ -430,9 +438,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
 				else {
 					msg("§7[§2i§fClient§7] §f-render (modname) (option)");
 				}
-			}
-
-			
+			}			
 			// TODO: COMMANDS
 			else
 				msg("§7[§2i§fClient§7] §fUnknown command, try -help!");

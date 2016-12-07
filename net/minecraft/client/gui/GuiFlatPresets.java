@@ -58,7 +58,7 @@ public class GuiFlatPresets extends GuiScreen
         this.field_146435_s = new GuiFlatPresets.ListSlot();
         this.field_146433_u.setMaxStringLength(1230);
         this.field_146433_u.setText(this.parentScreen.func_146384_e());
-        this.buttonList.add(this.field_146434_t = new GuiButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("createWorld.customize.presets.select", new Object[0])));
+        this.buttonList.add(this.field_146434_t = new GUIIButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("createWorld.customize.presets.select", new Object[0])));
         this.buttonList.add(new GUIIButton(1, this.width / 2 + 5, this.height - 28, 150, 20, I18n.format("gui.cancel", new Object[0])));
         this.func_146426_g();
     }

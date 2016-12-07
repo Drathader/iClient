@@ -59,9 +59,9 @@ public class GuiCreateFlatWorld extends GuiScreen
         this.field_146394_i = I18n.format("createWorld.customize.flat.tile", new Object[0]);
         this.field_146391_r = I18n.format("createWorld.customize.flat.height", new Object[0]);
         this.createFlatWorldListSlotGui = new GuiCreateFlatWorld.Details();
-        this.buttonList.add(this.field_146389_t = new GuiButton(2, this.width / 2 - 154, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.addLayer", new Object[0]) + " (NYI)"));
-        this.buttonList.add(this.field_146388_u = new GuiButton(3, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.editLayer", new Object[0]) + " (NYI)"));
-        this.buttonList.add(this.field_146386_v = new GuiButton(4, this.width / 2 - 155, this.height - 52, 150, 20, I18n.format("createWorld.customize.flat.removeLayer", new Object[0])));
+        this.buttonList.add(this.field_146389_t = new GUIIButton(2, this.width / 2 - 154, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.addLayer", new Object[0]) + " (NYI)"));
+        this.buttonList.add(this.field_146388_u = new GUIIButton(3, this.width / 2 - 50, this.height - 52, 100, 20, I18n.format("createWorld.customize.flat.editLayer", new Object[0]) + " (NYI)"));
+        this.buttonList.add(this.field_146386_v = new GUIIButton(4, this.width / 2 - 155, this.height - 52, 150, 20, I18n.format("createWorld.customize.flat.removeLayer", new Object[0])));
         this.buttonList.add(new GUIIButton(0, this.width / 2 - 155, this.height - 28, 150, 20, I18n.format("gui.done", new Object[0])));
         this.buttonList.add(new GUIIButton(5, this.width / 2 + 5, this.height - 52, 150, 20, I18n.format("createWorld.customize.presets", new Object[0])));
         this.buttonList.add(new GUIIButton(1, this.width / 2 + 5, this.height - 28, 150, 20, I18n.format("gui.cancel", new Object[0])));

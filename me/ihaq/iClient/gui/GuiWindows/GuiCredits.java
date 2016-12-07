@@ -17,24 +17,24 @@ import net.minecraft.client.gui.GuiScreen;
 
 public class GuiCredits extends GuiScreen {
 	private GuiMainMenu prevMenu;
-    private final static FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
-    private static final FontUtils fu_title =  new FontUtils("Audiowide", Font.PLAIN, 60);
-    private static final FontUtils fu_sub_title =  new FontUtils("Audiowide", Font.PLAIN, 25);
+    //private final static FontUtils Minecraft.getMinecraft().fontRendererObj = new FontUtils("Audiowide", Font.PLAIN, 18);
+    //private static final FontUtils Minecraft.getMinecraft().fontRendererObj =  new FontUtils("Audiowide", Font.PLAIN, 60);
+    //private static final FontUtils fu_sub_title =  new FontUtils("Audiowide", Font.PLAIN, 25);
 
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		this.drawDefaultBackground();
-		fu_title.drawCenteredString( "CREDITS", this.width / 2, this.height / 2-86, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "CREDITS", this.width / 2, this.height / 2-86, -1);
 
-		fu_sub_title.drawCenteredString( "Coder", this.width / 2, this.height / 2-48, -1);
-		fu_mods.drawCenteredString( "iHaq - Skidding", this.width / 2, this.height / 2-32, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Coder", this.width / 2, this.height / 2-48, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "iHaq - Skidding", this.width / 2, this.height / 2-32, -1);
 
-		fu_sub_title.drawCenteredString( "Helpers", this.width / 2, this.height / 2-16 , -1);
-		fu_mods.drawCenteredString( "XYZER - Menus", this.width / 2, this.height / 2, -1);
-		fu_mods.drawCenteredString( "EaZyClient - Commands", this.width / 2, this.height / 2+11, -1);
-		fu_mods.drawCenteredString( "ProMcHacks - RandomStuff", this.width / 2, this.height / 2+22, -1);
-		fu_mods.drawCenteredString( "SwezedCode - Fix Font Error", this.width / 2, this.height / 2+33, -1);
-		fu_mods.drawCenteredString( "Volcano - TABGUI & OutlineESP", this.width / 2, this.height / 2+43, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Helpers", this.width / 2, this.height / 2-16 , -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "XYZER - Menus", this.width / 2, this.height / 2, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "EaZyClient - Commands", this.width / 2, this.height / 2+11, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "ProMcHacks - RandomStuff", this.width / 2, this.height / 2+22, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "SwezedCode - Fix Font Error", this.width / 2, this.height / 2+33, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Volcano - TABGUI & OutlineESP", this.width / 2, this.height / 2+43, -1);
 		super.drawScreen(par1, par2, par3);
 	}
 

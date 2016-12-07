@@ -41,7 +41,7 @@ public class GuiControls extends GuiScreen
     {
         this.keyBindingList = new GuiKeyBindingList(this, this.mc);
         this.buttonList.add(new GUIIButton(200, this.width / 2 - 155, this.height - 29, 150, 20, I18n.format("gui.done", new Object[0])));
-        this.buttonList.add(this.buttonReset = new GuiButton(201, this.width / 2 - 155 + 160, this.height - 29, 150, 20, I18n.format("controls.resetAll", new Object[0])));
+        this.buttonList.add(this.buttonReset = new GUIIButton(201, this.width / 2 - 155 + 160, this.height - 29, 150, 20, I18n.format("controls.resetAll", new Object[0])));
         this.screenTitle = I18n.format("controls.title", new Object[0]);
         int i = 0;
 

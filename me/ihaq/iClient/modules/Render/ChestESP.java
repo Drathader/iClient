@@ -16,7 +16,12 @@ public class ChestESP extends Module{
 	
 	public void onRender() {
 		if(this.isToggled()){
-			box();
+			if(mode.equals("outline")){
+				setMode("\u00A7f[OUTLINE]");
+			}
+			else if(mode.equals("box")){
+				box();
+			}
 		}
 	}
 	

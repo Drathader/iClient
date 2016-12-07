@@ -28,7 +28,9 @@ public class MobESP extends Module {
 		if (mode.equals("outline")) {
 			setMode("\u00A7f[OUTLINE]");
 		} else if (mode.equals("box")) {
-			box();
+			setMode("\u00A7f[BOX]");
+			mode = "box";
+			box();			
 		}
 		else if (mode.equals("wireframe")) {
 			setMode("\u00A7f[WIREFRAME]");
@@ -40,8 +42,6 @@ public class MobESP extends Module {
 	}
 
 	public void box() {
-		setMode("\u00A7f[BOX]");
-		mode = "box";
 		for (Object theObject : mc.theWorld.loadedEntityList) {
 			for (Object e : mc.theWorld.loadedEntityList) {
 				if (e instanceof EntityLiving) {

@@ -33,7 +33,6 @@ public class KillAura extends Module {
 	
 	public void triggerBot() {
 		setMode("\u00A7f[TRIGGERBOT]");		
-		
 		for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
             Object theObject = entities.next();
             if(theObject instanceof EntityLivingBase) {
@@ -45,7 +44,7 @@ public class KillAura extends Module {
                 if(mc.thePlayer.getDistanceToEntity(entity) <= 4.5F) {
                     if(entity.isEntityAlive()) {
                     	
-                    	if(Criticals.getCriticalsMode().equals("JUMP")){
+                    	if(Criticals.getCriticalsMode().equals("JUMP") && Criticals.active == true){
                     		if(mc.thePlayer.onGround){
                     			mc.thePlayer.jump();
                     		}
@@ -53,7 +52,12 @@ public class KillAura extends Module {
                             mc.thePlayer.swingItem();
                             continue;
                     	}
-                    	else{
+                    	else if(Criticals.getCriticalsMode().equals("PACKETS") && Criticals.active == true){
+                    		Criticals.packets();
+                            mc.playerController.attackEntity(mc.thePlayer, entity);
+                            mc.thePlayer.swingItem();
+                            continue;
+                    	}else{
                             mc.playerController.attackEntity(mc.thePlayer, entity);
                             mc.thePlayer.swingItem();
                             continue;

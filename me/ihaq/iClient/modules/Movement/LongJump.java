@@ -63,17 +63,11 @@ public class LongJump extends Module{
 		setMode("\u00A7f[JUMPMAN]");
 	}
 	
-	int delayy;
 	public void onUpdate(){
 		if(!this.isToggled()){
 			return;
-		}
-		delayy++;		
+		}	
 		jumpMan();
-		if(delayy > 10 && mc.thePlayer.onGround){
-			mc.thePlayer.motionX = 0;
-			mc.thePlayer.motionZ = 0;
-		}
 	}
 	
 	public void jumpMan(){
@@ -278,7 +272,6 @@ public class LongJump extends Module{
     public void onDisable() {
         active = false;
         Timer.timerSpeed = 1.0f;
-        delayy = 0;
     }
 }
 

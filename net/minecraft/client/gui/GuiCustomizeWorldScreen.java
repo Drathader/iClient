@@ -2,6 +2,9 @@ package net.minecraft.client.gui;
 
 import com.google.common.base.Predicate;
 import com.google.common.primitives.Floats;
+
+import me.ihaq.iClient.gui.GUIIButton;
+
 import java.io.IOException;
 import java.util.Random;
 import net.minecraft.client.renderer.GlStateManager;
@@ -69,17 +72,17 @@ public class GuiCustomizeWorldScreen extends GuiScreen implements GuiSlider.Form
 
         this.field_175341_a = I18n.format("options.customizeTitle", new Object[0]);
         this.buttonList.clear();
-        this.buttonList.add(this.field_175345_v = new GuiButton(302, 20, 5, 80, 20, I18n.format("createWorld.customize.custom.prev", new Object[0])));
-        this.buttonList.add(this.field_175344_w = new GuiButton(303, this.width - 100, 5, 80, 20, I18n.format("createWorld.customize.custom.next", new Object[0])));
-        this.buttonList.add(this.field_175346_u = new GuiButton(304, this.width / 2 - 187, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.defaults", new Object[0])));
-        this.buttonList.add(this.field_175347_t = new GuiButton(301, this.width / 2 - 92, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.randomize", new Object[0])));
-        this.buttonList.add(this.field_175350_z = new GuiButton(305, this.width / 2 + 3, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.presets", new Object[0])));
-        this.buttonList.add(this.field_175348_s = new GuiButton(300, this.width / 2 + 98, this.height - 27, 90, 20, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(this.field_175345_v = new GUIIButton(302, 20, 5, 80, 20, I18n.format("createWorld.customize.custom.prev", new Object[0])));
+        this.buttonList.add(this.field_175344_w = new GUIIButton(303, this.width - 100, 5, 80, 20, I18n.format("createWorld.customize.custom.next", new Object[0])));
+        this.buttonList.add(this.field_175346_u = new GUIIButton(304, this.width / 2 - 187, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.defaults", new Object[0])));
+        this.buttonList.add(this.field_175347_t = new GUIIButton(301, this.width / 2 - 92, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.randomize", new Object[0])));
+        this.buttonList.add(this.field_175350_z = new GUIIButton(305, this.width / 2 + 3, this.height - 27, 90, 20, I18n.format("createWorld.customize.custom.presets", new Object[0])));
+        this.buttonList.add(this.field_175348_s = new GUIIButton(300, this.width / 2 + 98, this.height - 27, 90, 20, I18n.format("gui.done", new Object[0])));
         this.field_175346_u.enabled = this.field_175338_A;
-        this.field_175352_x = new GuiButton(306, this.width / 2 - 55, 160, 50, 20, I18n.format("gui.yes", new Object[0]));
+        this.field_175352_x = new GUIIButton(306, this.width / 2 - 55, 160, 50, 20, I18n.format("gui.yes", new Object[0]));
         this.field_175352_x.visible = false;
         this.buttonList.add(this.field_175352_x);
-        this.field_175351_y = new GuiButton(307, this.width / 2 + 5, 160, 50, 20, I18n.format("gui.no", new Object[0]));
+        this.field_175351_y = new GUIIButton(307, this.width / 2 + 5, 160, 50, 20, I18n.format("gui.no", new Object[0]));
         this.field_175351_y.visible = false;
         this.buttonList.add(this.field_175351_y);
 

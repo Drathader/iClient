@@ -3,6 +3,8 @@ package net.minecraft.client.gui;
 import com.google.common.collect.Lists;
 import com.google.gson.JsonParseException;
 import io.netty.buffer.Unpooled;
+import me.ihaq.iClient.gui.GUIIButton;
+
 import java.io.IOException;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -117,14 +119,14 @@ public class GuiScreenBook extends GuiScreen
 
         if (this.bookIsUnsigned)
         {
-            this.buttonList.add(this.buttonSign = new GuiButton(3, this.width / 2 - 100, 4 + this.bookImageHeight, 98, 20, I18n.format("book.signButton", new Object[0])));
-            this.buttonList.add(this.buttonDone = new GuiButton(0, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.done", new Object[0])));
-            this.buttonList.add(this.buttonFinalize = new GuiButton(5, this.width / 2 - 100, 4 + this.bookImageHeight, 98, 20, I18n.format("book.finalizeButton", new Object[0])));
-            this.buttonList.add(this.buttonCancel = new GuiButton(4, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.cancel", new Object[0])));
+            this.buttonList.add(this.buttonSign = new GUIIButton(3, this.width / 2 - 100, 4 + this.bookImageHeight, 98, 20, I18n.format("book.signButton", new Object[0])));
+            this.buttonList.add(this.buttonDone = new GUIIButton(0, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.done", new Object[0])));
+            this.buttonList.add(this.buttonFinalize = new GUIIButton(5, this.width / 2 - 100, 4 + this.bookImageHeight, 98, 20, I18n.format("book.finalizeButton", new Object[0])));
+            this.buttonList.add(this.buttonCancel = new GUIIButton(4, this.width / 2 + 2, 4 + this.bookImageHeight, 98, 20, I18n.format("gui.cancel", new Object[0])));
         }
         else
         {
-            this.buttonList.add(this.buttonDone = new GuiButton(0, this.width / 2 - 100, 4 + this.bookImageHeight, 200, 20, I18n.format("gui.done", new Object[0])));
+            this.buttonList.add(this.buttonDone = new GUIIButton(0, this.width / 2 - 100, 4 + this.bookImageHeight, 200, 20, I18n.format("gui.done", new Object[0])));
         }
 
         int i = (this.width - this.bookImageWidth) / 2;

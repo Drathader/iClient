@@ -10,7 +10,7 @@ import me.ihaq.iClient.modules.Module;
 public class Sprint extends Module{
 	
 	public Sprint(){
-		super("Sprint", Keyboard.KEY_G,Category.MOVEMENT,"");
+		super("Sprint", Keyboard.KEY_NONE ,Category.MOVEMENT,"");
 	}
 	
 	public void onUpdate(){

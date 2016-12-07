@@ -61,7 +61,7 @@ public class GuiOptions extends GuiScreen implements GuiYesNoCallback
         if (this.mc.theWorld != null)
         {
             EnumDifficulty enumdifficulty = this.mc.theWorld.getDifficulty();
-            this.field_175357_i = new GuiButton(108, this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), 150, 20, this.func_175355_a(enumdifficulty));
+            this.field_175357_i = new GUIIButton(108, this.width / 2 - 155 + i % 2 * 160, this.height / 6 - 12 + 24 * (i >> 1), 150, 20, this.func_175355_a(enumdifficulty));
             this.buttonList.add(this.field_175357_i);
 
             if (this.mc.isSingleplayer() && !this.mc.theWorld.getWorldInfo().isHardcoreModeEnabled())

@@ -2,7 +2,6 @@ package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import net.minecraft.network.play.client.C14PacketTabComplete;
 import net.minecraft.util.BlockPos;
@@ -29,7 +28,7 @@ public class GuiChat extends GuiScreen
     private boolean playerNamesFound;
     private boolean waitingOnAutocomplete;
     private int autocompleteIndex;
-    private List foundPlayerNames = Lists.newArrayList();
+    private List<String> foundPlayerNames = Lists.<String>newArrayList();
 
     /** Chat entry field */
     protected GuiTextField inputField;
@@ -39,21 +38,24 @@ public class GuiChat extends GuiScreen
      */
     private String defaultInputFieldText = "";
 
-    public GuiChat() {}
-
-    public GuiChat(String p_i1024_1_)
+    public GuiChat()
     {
-        this.defaultInputFieldText = p_i1024_1_;
+    }
+
+    public GuiChat(String defaultText)
+    {
+        this.defaultInputFieldText = defaultText;
     }
 
     /**
-     * Adds the buttons (and other controls) to the screen in question.
+     * Adds the buttons (and other controls) to the screen in question. Called when the GUI is displayed and when the
+     * window resizes, the buttonList is cleared beforehand.
      */
     public void initGui()
     {
         Keyboard.enableRepeatEvents(true);
         this.sentHistoryCursor = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
-        this.inputField = new GuiTextField(0, this.fontRendererObj, 4, this.height - 12, this.width - 4, 12);
+        this.inputField = new GuiTextField(0, this.fontRendererObj, 4, this.height - 10, this.width - 4, 12);
         this.inputField.setMaxStringLength(100);
         this.inputField.setEnableBackgroundDrawing(false);
         this.inputField.setFocused(true);
@@ -79,7 +81,7 @@ public class GuiChat extends GuiScreen
     }
 
     /**
-     * Fired when a key is typed (except F11 who toggle full screen). This is the equivalent of
+     * Fired when a key is typed (except F11 which toggles full screen). This is the equivalent of
      * KeyListener.keyTyped(KeyEvent e). Args : character (character on the key), keyCode (lwjgl Keyboard key code)
      */
     protected void keyTyped(char typedChar, int keyCode) throws IOException
@@ -141,26 +143,26 @@ public class GuiChat extends GuiScreen
     public void handleMouseInput() throws IOException
     {
         super.handleMouseInput();
-        int var1 = Mouse.getEventDWheel();
+        int i = Mouse.getEventDWheel();
 
-        if (var1 != 0)
+        if (i != 0)
         {
-            if (var1 > 1)
+            if (i > 1)
             {
-                var1 = 1;
+                i = 1;
             }
 
-            if (var1 < -1)
+            if (i < -1)
             {
-                var1 = -1;
+                i = -1;
             }
 
             if (!isShiftKeyDown())
             {
-                var1 *= 7;
+                i *= 7;
             }
 
-            this.mc.ingameGUI.getChatGUI().scroll(var1);
+            this.mc.ingameGUI.getChatGUI().scroll(i);
         }
     }
 
@@ -171,9 +173,9 @@ public class GuiChat extends GuiScreen
     {
         if (mouseButton == 0)
         {
-            IChatComponent var4 = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
+            IChatComponent ichatcomponent = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
 
-            if (this.handleComponentClick(var4))
+            if (this.handleComponentClick(ichatcomponent))
             {
                 return;
             }
@@ -183,22 +185,23 @@ public class GuiChat extends GuiScreen
         super.mouseClicked(mouseX, mouseY, mouseButton);
     }
 
-    protected void func_175274_a(String p_175274_1_, boolean p_175274_2_)
+    /**
+     * Sets the text of the chat
+     */
+    protected void setText(String newChatText, boolean shouldOverwrite)
     {
-        if (p_175274_2_)
+        if (shouldOverwrite)
         {
-            this.inputField.setText(p_175274_1_);
+            this.inputField.setText(newChatText);
         }
         else
         {
-            this.inputField.writeText(p_175274_1_);
+            this.inputField.writeText(newChatText);
         }
     }
 
     public void autocompletePlayerNames()
     {
-        String var3;
-
         if (this.playerNamesFound)
         {
             this.inputField.deleteFromCursor(this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false) - this.inputField.getCursorPosition());
@@ -210,12 +213,12 @@ public class GuiChat extends GuiScreen
         }
         else
         {
-            int var1 = this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false);
+            int i = this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false);
             this.foundPlayerNames.clear();
             this.autocompleteIndex = 0;
-            String var2 = this.inputField.getText().substring(var1).toLowerCase();
-            var3 = this.inputField.getText().substring(0, this.inputField.getCursorPosition());
-            this.sendAutocompleteRequest(var3, var2);
+            String s = this.inputField.getText().substring(i).toLowerCase();
+            String s1 = this.inputField.getText().substring(0, this.inputField.getCursorPosition());
+            this.sendAutocompleteRequest(s1, s);
 
             if (this.foundPlayerNames.isEmpty())
             {
@@ -223,24 +226,24 @@ public class GuiChat extends GuiScreen
             }
 
             this.playerNamesFound = true;
-            this.inputField.deleteFromCursor(var1 - this.inputField.getCursorPosition());
+            this.inputField.deleteFromCursor(i - this.inputField.getCursorPosition());
         }
 
         if (this.foundPlayerNames.size() > 1)
         {
-            StringBuilder var4 = new StringBuilder();
+            StringBuilder stringbuilder = new StringBuilder();
 
-            for (Iterator var5 = this.foundPlayerNames.iterator(); var5.hasNext(); var4.append(var3))
+            for (String s2 : this.foundPlayerNames)
             {
-                var3 = (String)var5.next();
-
-                if (var4.length() > 0)
+                if (stringbuilder.length() > 0)
                 {
-                    var4.append(", ");
+                    stringbuilder.append(", ");
                 }
+
+                stringbuilder.append(s2);
             }
 
-            this.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(new ChatComponentText(var4.toString()), 1);
+            this.mc.ingameGUI.getChatGUI().printChatMessageWithOptionalDeletion(new ChatComponentText(stringbuilder.toString()), 1);
         }
 
         this.inputField.writeText((String)this.foundPlayerNames.get(this.autocompleteIndex++));
@@ -250,14 +253,14 @@ public class GuiChat extends GuiScreen
     {
         if (p_146405_1_.length() >= 1)
         {
-            BlockPos var3 = null;
+            BlockPos blockpos = null;
 
             if (this.mc.objectMouseOver != null && this.mc.objectMouseOver.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK)
             {
-                var3 = this.mc.objectMouseOver.getBlockPos();
+                blockpos = this.mc.objectMouseOver.getBlockPos();
             }
 
-            this.mc.thePlayer.sendQueue.addToSendQueue(new C14PacketTabComplete(p_146405_1_, var3));
+            this.mc.thePlayer.sendQueue.addToSendQueue(new C14PacketTabComplete(p_146405_1_, blockpos));
             this.waitingOnAutocomplete = true;
         }
     }
@@ -266,28 +269,28 @@ public class GuiChat extends GuiScreen
      * input is relative and is applied directly to the sentHistoryCursor so -1 is the previous message, 1 is the next
      * message from the current cursor position
      */
-    public void getSentHistory(int p_146402_1_)
+    public void getSentHistory(int msgPos)
     {
-        int var2 = this.sentHistoryCursor + p_146402_1_;
-        int var3 = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
-        var2 = MathHelper.clamp_int(var2, 0, var3);
+        int i = this.sentHistoryCursor + msgPos;
+        int j = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
+        i = MathHelper.clamp_int(i, 0, j);
 
-        if (var2 != this.sentHistoryCursor)
+        if (i != this.sentHistoryCursor)
         {
-            if (var2 == var3)
+            if (i == j)
             {
-                this.sentHistoryCursor = var3;
+                this.sentHistoryCursor = j;
                 this.inputField.setText(this.historyBuffer);
             }
             else
             {
-                if (this.sentHistoryCursor == var3)
+                if (this.sentHistoryCursor == j)
                 {
                     this.historyBuffer = this.inputField.getText();
                 }
 
-                this.inputField.setText((String)this.mc.ingameGUI.getChatGUI().getSentMessages().get(var2));
-                this.sentHistoryCursor = var2;
+                this.inputField.setText((String)this.mc.ingameGUI.getChatGUI().getSentMessages().get(i));
+                this.sentHistoryCursor = i;
             }
         }
     }
@@ -299,11 +302,11 @@ public class GuiChat extends GuiScreen
     {
         drawRect(2, this.height - 14, this.width - 2, this.height - 2, Integer.MIN_VALUE);
         this.inputField.drawTextBox();
-        IChatComponent var4 = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
+        IChatComponent ichatcomponent = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
 
-        if (var4 != null && var4.getChatStyle().getChatHoverEvent() != null)
+        if (ichatcomponent != null && ichatcomponent.getChatStyle().getChatHoverEvent() != null)
         {
-            this.handleComponentHover(var4, mouseX, mouseY);
+            this.handleComponentHover(ichatcomponent, mouseX, mouseY);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -315,26 +318,22 @@ public class GuiChat extends GuiScreen
         {
             this.playerNamesFound = false;
             this.foundPlayerNames.clear();
-            String[] var2 = p_146406_1_;
-            int var3 = p_146406_1_.length;
 
-            for (int var4 = 0; var4 < var3; ++var4)
+            for (String s : p_146406_1_)
             {
-                String var5 = var2[var4];
-
-                if (var5.length() > 0)
+                if (s.length() > 0)
                 {
-                    this.foundPlayerNames.add(var5);
+                    this.foundPlayerNames.add(s);
                 }
             }
 
-            String var6 = this.inputField.getText().substring(this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false));
-            String var7 = StringUtils.getCommonPrefix(p_146406_1_);
+            String s1 = this.inputField.getText().substring(this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false));
+            String s2 = StringUtils.getCommonPrefix(p_146406_1_);
 
-            if (var7.length() > 0 && !var6.equalsIgnoreCase(var7))
+            if (s2.length() > 0 && !s1.equalsIgnoreCase(s2))
             {
                 this.inputField.deleteFromCursor(this.inputField.func_146197_a(-1, this.inputField.getCursorPosition(), false) - this.inputField.getCursorPosition());
-                this.inputField.writeText(var7);
+                this.inputField.writeText(s2);
             }
             else if (this.foundPlayerNames.size() > 0)
             {

@@ -1,6 +1,8 @@
 package net.minecraft.client.gui;
 
 import io.netty.buffer.Unpooled;
+import me.ihaq.iClient.gui.GUIIButton;
+
 import java.io.IOException;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.server.CommandBlockLogic;
@@ -49,9 +51,9 @@ public class GuiCommandBlock extends GuiScreen
     {
         Keyboard.enableRepeatEvents(true);
         this.buttonList.clear();
-        this.buttonList.add(this.doneBtn = new GuiButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done", new Object[0])));
-        this.buttonList.add(this.cancelBtn = new GuiButton(1, this.width / 2 + 4, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.cancel", new Object[0])));
-        this.buttonList.add(this.field_175390_s = new GuiButton(4, this.width / 2 + 150 - 20, 150, 20, 20, "O"));
+        this.buttonList.add(this.doneBtn = new GUIIButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(this.cancelBtn = new GUIIButton(1, this.width / 2 + 4, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.cancel", new Object[0])));
+        this.buttonList.add(this.field_175390_s = new GUIIButton(4, this.width / 2 + 150 - 20, 150, 20, 20, "O"));
         this.commandTextField = new GuiTextField(2, this.fontRendererObj, this.width / 2 - 150, 50, 300, 20);
         this.commandTextField.setMaxStringLength(32767);
         this.commandTextField.setFocused(true);

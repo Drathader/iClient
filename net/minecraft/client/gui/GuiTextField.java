@@ -62,7 +62,6 @@ public class GuiTextField extends Gui
     private GuiPageButtonList.GuiResponder field_175210_x;
     private Predicate<String> field_175209_y = Predicates.<String>alwaysTrue();
     
-    private static FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
 
     public GuiTextField(int componentId, FontRenderer fontrendererObj, int x, int y, int par5Width, int par6Height)
     {
@@ -557,7 +556,7 @@ public class GuiTextField extends Gui
             if (s.length() > 0)
             {
                 String s1 = flag ? s.substring(0, j) : s;
-                j1 = fu_mods.drawStringWithShadow(s1, (float)l, (float)i1-2, i);
+                j1 = Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(s1, (float)l, (float)i1-2, i);
             }
 
             boolean flag2 = this.cursorPosition < this.text.length() || this.text.length() >= this.getMaxStringLength();
