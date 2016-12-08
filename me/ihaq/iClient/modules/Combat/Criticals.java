@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class Criticals extends Module {
 
-	private static String mode = "PACKETS";
+	public static String mode = "PACKETS";
 	public static boolean active;
 
 	public Criticals() {

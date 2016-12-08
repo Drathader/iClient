@@ -1,9 +1,7 @@
 package net.minecraft.client.entity;
 
 import me.ihaq.iClient.iClient;
-import me.ihaq.iClient.modules.Render.Fullbright;
-import me.ihaq.iClient.modules.Render.MobESP;
-import me.ihaq.iClient.modules.Render.PlayerESP;
+import me.ihaq.iClient.Commands.Command;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -303,14 +301,9 @@ public class EntityPlayerSP extends AbstractClientPlayer
 		// TODO - iClient
 		String[] cmd = message.split(" ");
 		if (cmd[0].startsWith("-")) {
-
 			if (cmd[0].equalsIgnoreCase("-help")) {
 				if (cmd.length == 1) {
-					try {
-						// Things to do when the command is performed
-						// cmd.length == 1 means you have no arguments
-						// this command has no arguments so you just type -help
-												
+					try {												
 						msg("§7[§2i§fClient§7] §fWelcome to §ai§fClient - §ai§fHaq");
 						msg("§7[§2i§fClient§7] §f-help (Shows all the aviliaiable commands!)");
 						msg("§7[§2i§fClient§7] §f-bind (modulename) (keyname)");
@@ -321,27 +314,18 @@ public class EntityPlayerSP extends AbstractClientPlayer
 					}
 				} 
 				else {
-					// this will be shown if you type something wrong for
-					// example if you do "-help hi", because help has no
-					// arguments
 					msg("§6Syntax: §2-help");
 				}
 
-			} 
-			
+			} 			
 			else if (cmd[0].equalsIgnoreCase("-bind")) {
 				if (cmd.length != 1) {
 					try {
-						// This command has arguments
 						String[] args = cmd;
-						// The first argument starts with args[1] then args[2]
-						// ...
-						// Example:
 						msg("§7[§2i§fClient§7] Your arguments:");
 						for (String s : args) {
 							if (!s.equalsIgnoreCase("-test"))
-								msg(s);
-								
+								msg(s);								
 						}
 
 					} 
@@ -354,90 +338,10 @@ public class EntityPlayerSP extends AbstractClientPlayer
 				}
 			}			
 			else if (cmd[0].equalsIgnoreCase("-render")) {
-				if (cmd.length != 1) {
-					try {
-						// This command has arguments
-						String[] args = cmd;
-						// The first argument starts with args[1] then args[2]
-						// ...
-						// Example:
-						
-						if (args[1].equalsIgnoreCase("playeresp")) {
-							String[] argsplayeresp = args;
-							if (argsplayeresp.length != 2) {
-								if (argsplayeresp[2].equalsIgnoreCase("outline")) {
-									msg("§7[§2i§fClient§7] PlayerESP mode set to §fOUTLINE§7!");
-									PlayerESP.mode = "outline";
-								} 
-								else if (argsplayeresp[2].equalsIgnoreCase("box")) {
-									msg("§7[§2i§fClient§7] PlayerESP mode set to §fBOX§7!");
-									PlayerESP.mode = "box";
-								}
-								else if (argsplayeresp[2].equalsIgnoreCase("wireframe")) {
-									msg("§7[§2i§fClient§7] PlayerESP mode set to §fWIREFRAME§7!");
-									PlayerESP.mode = "wireframe";
-								} 
-								else {
-									msg("§7[§2i§fClient§7] §f-render playeresp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
-								}
-							}
-							else{
-								msg("§7[§2i§fClient§7] §f-render playeresp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
-							}
-						}
-						else if (args[1].equalsIgnoreCase("mobesp")) {
-							String[] argsmobesp = args;
-							if (argsmobesp.length != 2) {
-								if (argsmobesp[2].equalsIgnoreCase("outline")) {
-									msg("§7[§2i§fClient§7] MobESP mode set to §fOUTLINE§7!");
-									MobESP.mode = "outline";
-								} 
-								else if (argsmobesp[2].equalsIgnoreCase("box")) {
-									msg("§7[§2i§fClient§7] MobESP mode set to §fBOX§7!");
-									MobESP.mode = "box";
-								} 
-								else if (argsmobesp[2].equalsIgnoreCase("wireframe")) {
-									msg("§7[§2i§fClient§7] MobESP mode set to §fWIREFRAME§7!");
-									MobESP.mode = "wireframe";
-								} 
-								else {
-									msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
-								}
-							}
-							else{
-								msg("§7[§2i§fClient§7] §f-render mobesp §7(§fOUTLINE§7/§fBOX§7/§fWIREFRAME§7)");
-							}
-						}
-						else if (args[1].equalsIgnoreCase("fullbright")) {
-							String[] argsfullbright = args;
-							if (argsfullbright.length != 2) {
-								if (argsfullbright[2].equalsIgnoreCase("gamma")) {
-									msg("§7[§2i§fClient§7] FullBright mode set to §fGAMMA§7!");
-									Fullbright.mode = "gamma";
-								} 
-								else if (argsfullbright[2].equalsIgnoreCase("potion")) {
-									msg("§7[§2i§fClient§7] FullBright mode set to §fPOTION§7!");
-									Fullbright.mode = "potion";
-								} 
-								else {
-									msg("§7[§2i§fClient§7] §f-render fullbright §7(§fGAMMA§7/§fPOTION§7)");
-								}
-							}
-							else{
-								msg("§7[§2i§fClient§7] §f-render fullbright §7(§fGAMMA§7/§fPOTION§7)");
-							}
-						}
-						else{
-							msg("§7[§2i§fClient§7] §f-render (mode) (option)");
-						}
-					} 
-					catch (Exception exception) {
-						msg("§7[§2i§fClient§7] §4Error: §c" + exception.toString());
-					}
-				} 
-				else {
-					msg("§7[§2i§fClient§7] §f-render (modname) (option)");
-				}
+				Command.getRender(cmd);
+
+			}else if (cmd[0].equalsIgnoreCase("-combat")) {
+				Command.getCombat(cmd);
 			}			
 			// TODO: COMMANDS
 			else
@@ -450,7 +354,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
     
     public static void msg(String Message) {
     	  Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(Message));
-    	 }
+    }
 
     /**
      * Swings the item the player is holding.

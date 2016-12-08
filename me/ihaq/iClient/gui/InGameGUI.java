@@ -4,6 +4,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.lwjgl.opengl.GL11;
+
 import me.ihaq.iClient.iClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -74,8 +76,10 @@ public class InGameGUI extends GuiScreen {
         	mc.fontRendererObj.drawString("Ping: \u00A7f"+ getPing() + "ms", 5, GuiScreen.height-25, Colors.getRainbow(0L, 1.0F).hashCode());
         	
         }
-        
-        mc.fontRendererObj.drawString("i"+"\u00A7fClient", 5, 2, Colors.getRainbow(0L, 1.0F).hashCode());
+        float scale = 2.0F;
+        GL11.glScalef(scale, scale, scale);
+        mc.fontRendererObj.drawString("i"+"\u00A7fClient", 3, 2, Colors.getRainbow(0L, 1.0F).hashCode());
+        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
         
         TabGUI.init();
         TabGUI.render();
