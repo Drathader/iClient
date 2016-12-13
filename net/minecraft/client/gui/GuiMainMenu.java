@@ -1,3 +1,4 @@
+
 package net.minecraft.client.gui;
 
 import java.awt.Font;
@@ -532,7 +533,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 				MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F);
 		f = f * 100.0F / (float) (this.fontRendererObj.getStringWidth(this.splashText) + 32);
 		GlStateManager.scale(f, f, f);
-		this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
+		//this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
 		GlStateManager.popMatrix();
 		String s = "iClient " + iClient.Client_Version;
 
