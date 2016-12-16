@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.io.IOException;
 
 import me.ihaq.iClient.gui.GUIIButton;
-import me.ihaq.iClient.utils.FontUtils;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;

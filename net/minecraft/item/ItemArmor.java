@@ -231,7 +231,7 @@ public class ItemArmor extends Item
 
         return itemStackIn;
     }
-
+    
     public static enum ArmorMaterial
     {
         LEATHER("leather", 5, new int[]{1, 3, 2, 1}, 15),

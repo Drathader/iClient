@@ -4,8 +4,6 @@ import java.awt.Font;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
-
-import me.ihaq.iClient.utils.FontUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;

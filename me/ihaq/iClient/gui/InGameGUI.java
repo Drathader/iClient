@@ -18,13 +18,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumFacing;
 import me.ihaq.iClient.utils.Colors;
 import me.ihaq.iClient.utils.ComparatorStrings;
-import me.ihaq.iClient.utils.FontUtils;
 import me.ihaq.iClient.utils.R2DUtils;
  
 public class InGameGUI extends GuiScreen {
 	
 	private ArrayList<String> mods = new ArrayList<String>();
-	private final FontUtils fu_title = new FontUtils("Audiowide", Font.PLAIN, 30);
 	
     public InGameGUI () {  
     	TabGUI.init();
@@ -32,8 +30,7 @@ public class InGameGUI extends GuiScreen {
     }
    
     @SuppressWarnings("incomplete-switch")
-	public void renderScreen() {
-    	
+	public void renderScreen() { 	
     	Entity entity = this.mc.getRenderViewEntity();
         EnumFacing enumfacing = entity.getHorizontalFacing();
         String s = "Invalid";
@@ -60,22 +57,24 @@ public class InGameGUI extends GuiScreen {
         double playerY = Math.round(mc.thePlayer.posY*100.0)/100.0;
         double playerZ = Math.round(mc.thePlayer.posZ*100.0)/100.0;
         
-        drawRect(5,80, TabGUI.baseCategoryWidth+2, 121, -1610612736);
-        mc.fontRendererObj.drawString("X: \u00A7f"+playerX, 6, 82, Colors.getRainbow(0L, 1.0F).hashCode());
-        mc.fontRendererObj.drawString("Y: \u00A7f"+playerY, 6, 92, Colors.getRainbow(0L, 1.0F).hashCode());
-        mc.fontRendererObj.drawString("Z: \u00A7f"+playerZ, 6, 102, Colors.getRainbow(0L, 1.0F).hashCode());
-        mc.fontRendererObj.drawString("FPS: \u00A7f"+ playerFPS, 6, 112, Colors.getRainbow(0L, 1.0F).hashCode());
-        
-
+        drawRect(5,80, TabGUI.baseCategoryWidth+2+5, 121, -1610612736);
+        drawRect(5,80, 5+5, 121, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("X: \u00A7f"+playerX, 6+6, 82, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("Y: \u00A7f"+playerY, 6+6, 92, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("Z: \u00A7f"+playerZ, 6+6, 102, Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawString("FPS: \u00A7f"+ playerFPS, 6+6, 112, Colors.getRainbow(0L, 1.0F).hashCode());
         
         if(mc.ingameGUI.getChatGUI().getChatOpen()){
         	//YAY
         }
         else{
-        	mc.fontRendererObj.drawString("Version: \u00A7f1.8", 5, GuiScreen.height-15, Colors.getRainbow(0L, 1.0F).hashCode());
-        	mc.fontRendererObj.drawString("Ping: \u00A7f"+ getPing() + "ms", 5, GuiScreen.height-25, Colors.getRainbow(0L, 1.0F).hashCode());
+        	drawRect(0,GuiScreen.height-19,GuiScreen.width,GuiScreen.height,1610612736);
+        	drawRect(0,GuiScreen.height-19,5,GuiScreen.height,Colors.getRainbow(0L, 1.0F).hashCode());
+        	mc.fontRendererObj.drawString("Version: \u00A7f1.8", 7, GuiScreen.height-8, Colors.getRainbow(0L, 1.0F).hashCode());
+        	mc.fontRendererObj.drawString("Ping: \u00A7f"+ getPing() + "ms", 7, GuiScreen.height-17, Colors.getRainbow(0L, 1.0F).hashCode());
         	
         }
+        
         float scale = 2.0F;
         GL11.glScalef(scale, scale, scale);
         mc.fontRendererObj.drawString("i"+"\u00A7fClient", 3, 2, Colors.getRainbow(0L, 1.0F).hashCode());

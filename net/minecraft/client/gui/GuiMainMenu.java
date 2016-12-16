@@ -1,4 +1,5 @@
 
+
 package net.minecraft.client.gui;
 
 import java.awt.Font;
@@ -24,7 +25,7 @@ import com.google.common.collect.Lists;
 import me.ihaq.iClient.iClient;
 import me.ihaq.iClient.gui.GUIIButton;
 import me.ihaq.iClient.gui.GuiWindows.GuiCredits;
-import me.ihaq.iClient.utils.FontUtils;
+import me.ihaq.iClient.utils.Colors;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -103,9 +104,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 
 	/** Minecraft Realms button. */
 	private GuiButton realmsButton;
-
-	/** My Font */
-	//private static final FontUtils Minecraft.getMinecraft().fontRendererObj = new FontUtils("Audiowide", Font.PLAIN, 18);
 
 	public GuiMainMenu() {
 		this.openGLWarning2 = field_96138_a;
@@ -187,8 +185,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 	 */
 	public void initGui() {
 		this.viewportTexture = new DynamicTexture(256, 256);
-		this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background",
-				this.viewportTexture);
+		this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background",this.viewportTexture);
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
 
@@ -513,8 +510,21 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 		this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
 		this.drawTexturedModalRect(var7 + 40, 30, 0, 0, 193, 80);
 		GL11.glDisable(3042);
-		this.drawDefaultBackground(); // the dirt background
+		
+		
+		ScaledResolution scaledRes = new ScaledResolution(this.mc);
+		//GlStateManager.color(1.0f, 0.85f, 0.85f, 1.0f);
+		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/title/back1.jpg"));
+		Gui.drawScaledCustomSizeModalRect(0, 0, 0.0f, 0.0f, scaledRes.getScaledWidth(), scaledRes.getScaledHeight(),
+				scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), scaledRes.getScaledWidth(),
+				scaledRes.getScaledHeight());
 
+		
+		float scale = 5.0F;
+        GL11.glScalef(scale, scale, scale);
+        mc.fontRendererObj.drawStringWithShadow("i"+"\u00A7fClient", ((this.width/2) - 98)/scale+5.7F, (this.height / 4)/scale, Colors.getRainbow(0L, 1.0F).hashCode());
+        GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
+		
 		if ((double) this.updateCounter < 1.0E-4D) {
 			this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 99, 44);
 			this.drawTexturedModalRect(j + 99, k + 0, 129, 0, 27, 44);

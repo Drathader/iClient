@@ -9,10 +9,10 @@ import me.ihaq.iClient.iClient;
 import me.ihaq.iClient.modules.Module;
 import me.ihaq.iClient.modules.Module.Category;
 import me.ihaq.iClient.utils.Colors;
-import me.ihaq.iClient.utils.FontUtils;
 import me.ihaq.iClient.utils.R2DUtils;
 import me.ihaq.iClient.utils.StringUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
  
 public class TabGUI {
     private static final int NO_COLOR = 0;
@@ -32,7 +32,6 @@ public class TabGUI {
     private static int modTargetPosition = 15;
     private static boolean transitionQuickly;
     private static long lastUpdateTime;
-    private static final FontUtils fu_mods = new FontUtils("Audiowide", Font.PLAIN, 18);
     
     public static void init() {
         int highestWidth = 0;
@@ -52,26 +51,31 @@ public class TabGUI {
  
     public static void render() {
         updateBars();
-        R2DUtils.drawRect(5.0F, 20.0F, 2 + baseCategoryWidth, 16 + baseCategoryHeight, -1610612736);
-        R2DUtils.drawRect(6.0F, categoryPosition, 2 + baseCategoryWidth - 1, categoryPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
+        R2DUtils.drawRect(5.0F, 20.0F, 2 + baseCategoryWidth+5, 16 + baseCategoryHeight, -1610612736);
+        R2DUtils.drawRect(5.0F,21.0F,10.0F,15 + baseCategoryHeight,Colors.getRainbow(0L, 1.0F).hashCode());
+        R2DUtils.drawRect(6.0F, categoryPosition, 2 + baseCategoryWidth - 1 +5, categoryPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
         int yPos = 20;
         int yPosBottom = 29;
         for (int i = 0; i < Category.values().length; i++) {
             Category category = Category.values()[i];
             String name = StringUtil.capitalize(category.name().toLowerCase());
-            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, (int) 7.0, yPos + 4, -1);
+            Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, (int) 12.0, yPos + 4, -1);
             yPos += 14;
             yPosBottom += 14;
         }
         if (section == Section.MODS) {
-            R2DUtils.drawRect(baseCategoryWidth + 4, categoryPosition - 1, baseCategoryWidth +  baseModWidth + 10, categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, -1610612736);
-            R2DUtils.drawRect(baseCategoryWidth + 5, modPosition, baseCategoryWidth + baseModWidth + 9, modPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
+            R2DUtils.drawRect(baseCategoryWidth + 4 +5, categoryPosition - 1, baseCategoryWidth +  baseModWidth + 10, categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, -1610612736);
+            R2DUtils.drawRect(baseCategoryWidth + 5 +5, modPosition, baseCategoryWidth + baseModWidth + 9, modPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
             yPos = categoryPosition;
             yPosBottom = categoryPosition + 14;
             for (int i = 0; i < getModsInCategory(Category.values()[categoryTab]).size(); i++) {
                 Module mod = getModsInCategory(Category.values()[categoryTab]).get(i);
                 String name = mod.name;
-                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, (int) (baseCategoryWidth + 7.0), yPos + 4, mod.isToggled() ? -1 : -4210753);
+                Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(name, (int) (baseCategoryWidth + 7.0 +5.0), yPos + 4, mod.isToggled() ? -1 : -4210753);
+                
+                if(mod.isToggled()){
+                	R2DUtils.drawRect(baseCategoryWidth +  baseModWidth + 10 -4,  yPos , baseCategoryWidth +  baseModWidth + 9, yPos+14, Colors.getRainbow(0L, 1.0F).hashCode());
+                }
                 yPos += 14;
                 yPosBottom += 14;
             }

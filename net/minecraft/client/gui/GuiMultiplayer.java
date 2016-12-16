@@ -17,6 +17,7 @@ import net.minecraft.client.multiplayer.ServerList;
 import net.minecraft.client.network.LanServerDetector;
 import net.minecraft.client.network.OldServerPinger;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
 {
@@ -373,6 +374,7 @@ public class GuiMultiplayer extends GuiScreen implements GuiYesNoCallback
     {
         this.hoveringText = null;
         this.drawDefaultBackground();
+		
         this.serverListSelector.drawScreen(mouseX, mouseY, partialTicks);
         this.drawCenteredString(this.fontRendererObj, I18n.format("multiplayer.title", new Object[0]), this.width / 2, 20, 16777215);
         super.drawScreen(mouseX, mouseY, partialTicks);

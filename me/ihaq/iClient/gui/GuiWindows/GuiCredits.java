@@ -7,29 +7,46 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 import me.ihaq.iClient.gui.GUIIButton;
-import me.ihaq.iClient.utils.FontUtils;
+import me.ihaq.iClient.utils.Colors;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiCredits extends GuiScreen {
 	private GuiMainMenu prevMenu;
-    //private final static FontUtils Minecraft.getMinecraft().fontRendererObj = new FontUtils("Audiowide", Font.PLAIN, 18);
-    //private static final FontUtils Minecraft.getMinecraft().fontRendererObj =  new FontUtils("Audiowide", Font.PLAIN, 60);
-    //private static final FontUtils fu_sub_title =  new FontUtils("Audiowide", Font.PLAIN, 25);
 
 	@Override
 	public void drawScreen(int par1, int par2, float par3) {
 		this.drawDefaultBackground();
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "CREDITS", this.width / 2, this.height / 2-86, -1);
-
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Coder", this.width / 2, this.height / 2-48, -1);
+		ScaledResolution scaledRes = new ScaledResolution(this.mc);
+		//GlStateManager.color(1.0f, 0.85f, 0.85f, 1.0f);
+		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/title/back1.jpg"));
+		Gui.drawScaledCustomSizeModalRect(0, 0, 0.0f, 0.0f, scaledRes.getScaledWidth(), scaledRes.getScaledHeight(),
+				scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), scaledRes.getScaledWidth(),
+				scaledRes.getScaledHeight());
+		
+		float scale = 2.0F;
+        GL11.glScalef(scale, scale, scale);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "CREDITS", (int) ((this.width / 2)/scale), (int) ((this.height / 2-86)/scale), -1);
+		GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
+		
+		float scale1 = 1.5F;
+        GL11.glScalef(scale1, scale1, scale1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Coder", (int)((this.width / 2)/scale1), (int) ((this.height / 2-48)/scale1), -1);
+		GL11.glScalef(1.0F / scale1, 1.0F / scale1, 1.0F / scale1);
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "iHaq - Skidding", this.width / 2, this.height / 2-32, -1);
-
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Helpers", this.width / 2, this.height / 2-16 , -1);
+		
+		float scale2 = 1.5F;
+        GL11.glScalef(scale2, scale2, scale2);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Helpers", (int)((this.width / 2)/scale2), (int) ((this.height / 2-16)/scale2) , -1);
+		GL11.glScalef(1.0F / scale2, 1.0F / scale2, 1.0F / scale2);
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "XYZER - Menus", this.width / 2, this.height / 2, -1);
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "EaZyClient - Commands", this.width / 2, this.height / 2+11, -1);
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "ProMcHacks - RandomStuff", this.width / 2, this.height / 2+22, -1);

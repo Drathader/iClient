@@ -3,7 +3,6 @@ package me.ihaq.iClient.gui;
 import java.awt.Color;
 import java.awt.Font;
 
-import me.ihaq.iClient.utils.FontUtils;
 import me.ihaq.iClient.utils.R2DUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
