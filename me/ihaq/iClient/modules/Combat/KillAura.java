@@ -9,8 +9,14 @@ import me.ihaq.iClient.modules.Module;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.client.C02PacketUseEntity;
 import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+
 import java.util.Iterator;
+import java.util.List;
 
 public class KillAura extends Module {
 
@@ -20,7 +26,7 @@ public class KillAura extends Module {
 	public KillAura() {
 		super("KillAura", Keyboard.KEY_R, Category.COMBAT, mode);
 	}
-		
+
 	@Override
 	public void onUpdate() {
 
@@ -29,43 +35,54 @@ public class KillAura extends Module {
 
 		triggerBot();
 	}
-	
-	
+
 	public void triggerBot() {
-		setMode("\u00A7f[TRIGGERBOT]");		
-		for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
-            Object theObject = entities.next();
-            if(theObject instanceof EntityLivingBase) {
-                EntityLivingBase entity = (EntityLivingBase) theObject;
-               
-                if(entity instanceof EntityPlayerSP){
-                	continue;
-                }
-                if(mc.thePlayer.getDistanceToEntity(entity) <= 4.5F) {
-                    if(entity.isEntityAlive()) {
-                    	
-                    	if(Criticals.getCriticalsMode().equals("JUMP") && Criticals.active == true){
-                    		if(mc.thePlayer.onGround){
-                    			mc.thePlayer.jump();
-                    		}
-                    		mc.playerController.attackEntity(mc.thePlayer, entity);
-                            mc.thePlayer.swingItem();
-                            continue;
-                    	}
-                    	else if(Criticals.getCriticalsMode().equals("PACKETS") && Criticals.active == true){
-                    		Criticals.packets();
-                            mc.playerController.attackEntity(mc.thePlayer, entity);
-                            mc.thePlayer.swingItem();
-                            continue;
-                    	}else{
-                            mc.playerController.attackEntity(mc.thePlayer, entity);
-                            mc.thePlayer.swingItem();
-                            continue;
-                    	}
-                    }
-                }
-            }
-        }
+		setMode("\u00A7f[TRIGGERBOT]");
+		List list = mc.theWorld.playerEntities;
+		for (Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
+			Object theObject = entities.next();
+			if (theObject instanceof EntityLivingBase) {
+				EntityLivingBase entity = (EntityLivingBase) theObject;
+				
+				if (entity instanceof EntityPlayerSP) {
+					continue;
+				}
+
+				if (mc.objectMouseOver.entityHit == null) {
+					continue;
+				}
+				if (mc.objectMouseOver.typeOfHit != MovingObjectPosition.MovingObjectType.ENTITY) {
+					continue;
+				}
+				if (mc.thePlayer.getDistanceToEntity(entity) <= 4.5F && triggerDelay > 10) {
+					if (entity.isEntityAlive()) {
+
+						if (Criticals.getCriticalsMode().equals("JUMP") && Criticals.active == true) {
+							if (mc.thePlayer.onGround) {
+								mc.thePlayer.jump();
+							}
+							mc.playerController.attackEntity(mc.thePlayer, entity);
+							//mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEnitity(mc.thePlayer, some enum to attack));
+							mc.thePlayer.swingItem();
+							triggerDelay = 0;
+							continue;
+						} else if (Criticals.getCriticalsMode().equals("PACKETS") && Criticals.active == true) {
+							Criticals.packets();
+							mc.playerController.attackEntity(mc.thePlayer, entity);
+							mc.thePlayer.swingItem();
+							triggerDelay = 0;
+							continue;
+						} else {
+							mc.playerController.attackEntity(mc.thePlayer, entity);
+							mc.thePlayer.swingItem();
+							triggerDelay = 0;
+							continue;
+						}
+					}
+				}
+				triggerDelay++;
+			}
+		}
 		super.onUpdate();
 	}
 }

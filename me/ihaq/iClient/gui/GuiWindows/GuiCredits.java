@@ -46,12 +46,13 @@ public class GuiCredits extends GuiScreen {
 		float scale2 = 1.5F;
         GL11.glScalef(scale2, scale2, scale2);
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Helpers", (int)((this.width / 2)/scale2), (int) ((this.height / 2-16)/scale2) , -1);
-		GL11.glScalef(1.0F / scale2, 1.0F / scale2, 1.0F / scale2);
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "XYZER - Menus", this.width / 2, this.height / 2, -1);
+		GL11.glScalef(1.0F / scale2, 1.0F / scale2, 1.0F / scale2);	
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "XYZER - Menus", this.width / 2, this.height / 2, -1);	
 		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "EaZyClient - Commands", this.width / 2, this.height / 2+11, -1);
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "ProMcHacks - RandomStuff", this.width / 2, this.height / 2+22, -1);
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "SwezedCode - Fix Font Error", this.width / 2, this.height / 2+33, -1);
-		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Volcano - TABGUI & OutlineESP", this.width / 2, this.height / 2+43, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "HeroCode - Backgrounds", this.width / 2, this.height / 2+22, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "ProMcHacks - RandomStuff", this.width / 2, this.height / 2+33, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "SwezedCode - Fix Font Error", this.width / 2, this.height / 2+44, -1);
+		drawCenteredString(Minecraft.getMinecraft().fontRendererObj, "Volcano - TABGUI & OutlineESP", this.width / 2, this.height / 2+55, -1);
 		super.drawScreen(par1, par2, par3);
 	}
 

@@ -56,18 +56,19 @@ public class iClient {
 		registerModule(new AntiBot());
 		registerModule(new AutoArmor());
 		registerModule(new InventoryMove());
-		
+		registerModule(new AirJump());
+		registerModule(new NoSlowDown());
 		
 		//////////////////////////
 		YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
 		YggdrasilUserAuthentication auth = (YggdrasilUserAuthentication) service
 				.createUserAuthentication(Agent.MINECRAFT);
-		auth.setUsername("leon.rock31ago@hotmail.com");
-		auth.setPassword("33521358");
+		auth.setUsername("grantbmills@gmail.com");
+		auth.setPassword("01011001Y");
 		try {
 			auth.logIn();
 			Minecraft.getMinecraft().session = new Session(auth.getSelectedProfile().getName(),
-					auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), "legacy");
+					auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), "mojang");
 			// yay
 		} catch (Exception e) {
 			// help

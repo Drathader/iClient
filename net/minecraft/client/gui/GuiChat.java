@@ -1,8 +1,13 @@
 package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
+
+import me.ihaq.iClient.utils.Colors;
+
 import java.io.IOException;
 import java.util.List;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.play.client.C14PacketTabComplete;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
@@ -14,6 +19,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
 public class GuiChat extends GuiScreen
 {
@@ -55,7 +61,7 @@ public class GuiChat extends GuiScreen
     {
         Keyboard.enableRepeatEvents(true);
         this.sentHistoryCursor = this.mc.ingameGUI.getChatGUI().getSentMessages().size();
-        this.inputField = new GuiTextField(0, this.fontRendererObj, 4, this.height - 10, this.width - 4, 12);
+        this.inputField = new GuiTextField(0, this.fontRendererObj, 4, this.height - 10, this.width - 5, 12);
         this.inputField.setMaxStringLength(100);
         this.inputField.setEnableBackgroundDrawing(false);
         this.inputField.setFocused(true);
@@ -295,22 +301,35 @@ public class GuiChat extends GuiScreen
         }
     }
 
+   
     /**
      * Draws the screen and all the components in it. Args : mouseX, mouseY, renderPartialTicks
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
-        drawRect(2, this.height - 14, this.width - 2, this.height - 2, Integer.MIN_VALUE);
-        this.inputField.drawTextBox();
-        IChatComponent ichatcomponent = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
+    	
+		double swidth = 16 + Math.max(fontRendererObj.getStringWidth(inputField.getText() + "__"),GuiNewChat.calculateChatboxWidth(Minecraft.getMinecraft().gameSettings.chatWidth) - 11);
+		drawRect(0, this.height - 14, (int) swidth, this.height, 0xaf151515);
+		drawRect(0, this.height - 15, (int) swidth, this.height - 14, Colors.getRainbow(0L, 1.0F).hashCode());
 
-        if (ichatcomponent != null && ichatcomponent.getChatStyle().getChatHoverEvent() != null)
-        {
-            this.handleComponentHover(ichatcomponent, mouseX, mouseY);
-        }
+		int size = 14;
+		mc.getTextureManager().bindTexture(mc.thePlayer.getLocationSkin());
+		GL11.glColor4f(1F, 1F, 1F, 1F);
+		Gui.drawScaledCustomSizeModalRect(0, this.height - 14, 8, 8, 8, 8, size, size, 64, 64);
 
-        super.drawScreen(mouseX, mouseY, partialTicks);
-    }
+		this.inputField.xPosition = 16;
+		this.inputField.yPosition = this.height - 11;
+		this.inputField.drawTextBox();
+
+		IChatComponent var5 = this.mc.ingameGUI.getChatGUI().getChatComponent(Mouse.getX(), Mouse.getY());
+
+		if (var5 != null && var5.getChatStyle().getChatHoverEvent() != null) {
+			this.handleComponentHover(var5, mouseX, mouseY);
+		}
+
+		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+    	
 
     public void onAutocompleteResponse(String[] p_146406_1_)
     {

@@ -3,6 +3,9 @@ package net.minecraft.client.gui;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
+
+import me.ihaq.iClient.utils.Colors;
+
 import java.util.Comparator;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -155,7 +158,8 @@ public class GuiPlayerTabOverlay extends Gui
 
             ++k1;
         }
-
+        
+        drawRect(width / 2 - l1 / 2 - 1, (k1 - 1) -1, width / 2 + l1 / 2 + 1, (k1 - 1) + 1, Colors.getRainbow(0L, 1.0F).hashCode());
         drawRect(width / 2 - l1 / 2 - 1, k1 - 1, width / 2 + l1 / 2 + 1, k1 + i4 * 9, Integer.MIN_VALUE);
 
         for (int k4 = 0; k4 < l3; ++k4)

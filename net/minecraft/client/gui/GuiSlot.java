@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.input.Mouse;
 
 public abstract class GuiSlot
@@ -233,6 +235,7 @@ public abstract class GuiSlot
             GlStateManager.disableFog();
             Tessellator tessellator = Tessellator.getInstance();
             WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+            
             this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
             float f = 32.0F;
@@ -242,6 +245,16 @@ public abstract class GuiSlot
             worldrenderer.pos((double)this.right, (double)this.top, 0.0D).tex((double)((float)this.right / f), (double)((float)(this.top + (int)this.amountScrolled) / f)).color(32, 32, 32, 255).endVertex();
             worldrenderer.pos((double)this.left, (double)this.top, 0.0D).tex((double)((float)this.left / f), (double)((float)(this.top + (int)this.amountScrolled) / f)).color(32, 32, 32, 255).endVertex();
             tessellator.draw();
+            
+            //TODO - iClient
+    		ScaledResolution scaledRes = new ScaledResolution(this.mc);
+    		//GlStateManager.color(1.0f, 0.85f, 0.85f, 1.0f);
+    		this.mc.getTextureManager().bindTexture(new ResourceLocation("textures/gui/title/back1.jpg"));
+    		Gui.drawScaledCustomSizeModalRect(0, 0, 0.0f, 0.0f, scaledRes.getScaledWidth(), scaledRes.getScaledHeight(),
+    				scaledRes.getScaledWidth(), scaledRes.getScaledHeight(), scaledRes.getScaledWidth(),
+    				scaledRes.getScaledHeight());
+    		
+    		
             int k = this.left + this.width / 2 - this.getListWidth() / 2 + 2;
             int l = this.top + 4 - (int)this.amountScrolled;
 
@@ -310,6 +323,7 @@ public abstract class GuiSlot
             GlStateManager.shadeModel(7424);
             GlStateManager.enableAlpha();
             GlStateManager.disableBlend();
+            
         }
     }
 
@@ -496,7 +510,8 @@ public abstract class GuiSlot
      */
     protected void overlayBackground(int startY, int endY, int startAlpha, int endAlpha)
     {
-        Tessellator tessellator = Tessellator.getInstance();
+        /*
+    	Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
         this.mc.getTextureManager().bindTexture(Gui.optionsBackground);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -507,6 +522,11 @@ public abstract class GuiSlot
         worldrenderer.pos((double)(this.left + this.width), (double)startY, 0.0D).tex((double)((float)this.width / 32.0F), (double)((float)startY / 32.0F)).color(64, 64, 64, startAlpha).endVertex();
         worldrenderer.pos((double)this.left, (double)startY, 0.0D).tex(0.0D, (double)((float)startY / 32.0F)).color(64, 64, 64, startAlpha).endVertex();
         tessellator.draw();
+        */
+    	
+    	//TODO - iClient
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        Gui.drawRect(this.left, startY, this.width, endY, 0xFF111111);
     }
 
     /**

@@ -79,10 +79,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 	/** Link to the Mojang Support about minimum requirements */
 	private String openGLWarningLink;
 	private static final ResourceLocation splashTexts = new ResourceLocation("texts/splashes.txt");
-	private static final ResourceLocation minecraftTitleTextures = new ResourceLocation(
-			"textures/gui/title/minecraft.png");
-	// private static final ResourceLocation minecraftTitleTextures = new
-	// ResourceLocation("textures/gui/title/logo.png");
+	private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
 
 	/** An array of all the paths to the panorama pictures. */
 	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {
@@ -490,6 +487,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 	 * renderPartialTicks
 	 */
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		/*
 		GlStateManager.disableAlpha();
 		this.renderSkybox(mouseX, mouseY, partialTicks);
 		GlStateManager.enableAlpha();
@@ -510,7 +508,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 		this.mc.getTextureManager().bindTexture(minecraftTitleTextures);
 		this.drawTexturedModalRect(var7 + 40, 30, 0, 0, 193, 80);
 		GL11.glDisable(3042);
-		
+		*/
 		
 		ScaledResolution scaledRes = new ScaledResolution(this.mc);
 		//GlStateManager.color(1.0f, 0.85f, 0.85f, 1.0f);
@@ -524,7 +522,19 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         GL11.glScalef(scale, scale, scale);
         mc.fontRendererObj.drawStringWithShadow("i"+"\u00A7fClient", ((this.width/2) - 98)/scale+5.7F, (this.height / 4)/scale, Colors.getRainbow(0L, 1.0F).hashCode());
         GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
-		
+        
+        /*
+        int size = 14;
+        mc.getTextureManager().bindTexture(mc.thePlayer.getLocationSkin());
+        GL11.glColor4f(1F, 1F, 1F, 1F);
+        Gui.drawScaledCustomSizeModalRect(0, this.height - 14, 8, 8, 8, 8, size, size, 64, 64);
+        */
+        
+        drawRect(9, 9, 30, 30, -1610612736);
+        mc.fontRendererObj.drawStringWithShadow(Minecraft.getMinecraft().getSession().getUsername(), 10, 10, -1);
+        
+        
+        /*
 		if ((double) this.updateCounter < 1.0E-4D) {
 			this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 99, 44);
 			this.drawTexturedModalRect(j + 99, k + 0, 129, 0, 27, 44);
@@ -535,7 +545,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 			this.drawTexturedModalRect(j + 0, k + 0, 0, 0, 155, 44);
 			this.drawTexturedModalRect(j + 155, k + 0, 0, 45, 155, 44);
 		}
+		*/
 
+        /*
 		GlStateManager.pushMatrix();
 		GlStateManager.translate((float) (this.width / 2 + 90), 70.0F, 0.0F);
 		GlStateManager.rotate(-20.0F, 0.0F, 0.0F, 1.0F);
@@ -543,18 +555,21 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 				MathHelper.sin((float) (Minecraft.getSystemTime() % 1000L) / 1000.0F * (float) Math.PI * 2.0F) * 0.1F);
 		f = f * 100.0F / (float) (this.fontRendererObj.getStringWidth(this.splashText) + 32);
 		GlStateManager.scale(f, f, f);
-		//this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
+		this.drawCenteredString(this.fontRendererObj, this.splashText, 0, -8, -256);
 		GlStateManager.popMatrix();
-		String s = "iClient " + iClient.Client_Version;
-
+		*/
+        
+        
+		String s = "i\u00A7fClient " + iClient.Client_Version;
 		if (this.mc.isDemo()) {
 			s = s + " Demo";
 		}
+		fontRendererObj.drawString(s, 2, this.height - 10, Colors.getRainbow(0L, 1.0F).hashCode());
+		String s1 = "\u00A7fDeveloped by The Profesional Skid - §riHaq";
+		fontRendererObj.drawString(s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, Colors.getRainbow(0L, 1.0F).hashCode());
 
-		fontRendererObj.drawString(s, 2, this.height - 10, -1);
-		String s1 = "Copyright Mojang AB. Do not distribute!";
-		fontRendererObj.drawString(s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 10, -1);
-
+		
+		
 		if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0) {
 			drawRect(this.field_92022_t - 2, this.field_92021_u - 2, this.field_92020_v + 2, this.field_92019_w - 1,
 					1428160512);
@@ -562,6 +577,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 			this.drawString(this.fontRendererObj, this.openGLWarning2, (this.width - this.field_92024_r) / 2,
 					((GuiButton) this.buttonList.get(0)).yPosition - 12, -1);
 		}
+		
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}

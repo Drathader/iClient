@@ -18,6 +18,7 @@ public class Spider extends Module {
 	
 	double lastJumpPos;
 	int intervel;
+	
 	@Override
 	public void onUpdate() {
 		if (!this.isToggled())

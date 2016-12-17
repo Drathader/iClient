@@ -1,6 +1,9 @@
 package net.minecraft.client.gui;
 
 import com.google.common.collect.Lists;
+
+import me.ihaq.iClient.utils.Colors;
+
 import java.util.Iterator;
 import java.util.List;
 import net.minecraft.client.Minecraft;
@@ -29,14 +32,22 @@ public class GuiNewChat extends Gui
 
     public void drawChat(int p_146230_1_)
     {
-        if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
+        
+    	if (this.mc.gameSettings.chatVisibility != EntityPlayer.EnumChatVisibility.HIDDEN)
         {
+			float f1_1 = this.getChatScale();
+            int l1_1 = MathHelper.ceiling_float_int((float)this.getChatWidth() / f1_1);
+            final int i2_1 = 0;
+            final int j2_1 = -0 * 9;
+            
+    		
             int i = this.getLineCount();
             boolean flag = false;
             int j = 0;
             int k = this.field_146253_i.size();
             float f = this.mc.gameSettings.chatOpacity * 0.9F + 0.1F;
 
+            
             if (k > 0)
             {
                 if (this.getChatOpen())
@@ -50,6 +61,7 @@ public class GuiNewChat extends Gui
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
 
+                
                 for (int i1 = 0; i1 + this.scrollPos < this.field_146253_i.size() && i1 < i; ++i1)
                 {
                     ChatLine chatline = (ChatLine)this.field_146253_i.get(i1 + this.scrollPos);
@@ -75,10 +87,14 @@ public class GuiNewChat extends Gui
                             l1 = (int)((float)l1 * f);
                             ++j;
 
+
+                            
                             if (l1 > 3)
                             {
                                 int i2 = 0;
                                 int j2 = -i1 * 9;
+                                
+                                
                                 drawRect(i2, j2 - 9, i2 + l + 4, j2, l1 / 2 << 24);
                                 String s = chatline.getChatComponent().getFormattedText();
                                 GlStateManager.enableBlend();
@@ -243,7 +259,9 @@ public class GuiNewChat extends Gui
         }
         else
         {
-            ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+
+        	
+        	ScaledResolution scaledresolution = new ScaledResolution(this.mc);
             int i = scaledresolution.getScaleFactor();
             float f = this.getChatScale();
             int j = p_146236_1_ / i - 3;
