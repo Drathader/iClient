@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 
 import com.mojang.authlib.Agent;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
@@ -21,6 +22,10 @@ import me.ihaq.iClient.modules.Misc.*;
 import me.ihaq.iClient.modules.Movement.*;
 import me.ihaq.iClient.modules.Render.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.util.Session;
 
 public class iClient {
@@ -111,6 +116,6 @@ public class iClient {
 		for (Module module : getModules()) {
 			module.onRender();
 		}
-
 	}
+	
 }

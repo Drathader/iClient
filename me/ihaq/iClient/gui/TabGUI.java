@@ -4,6 +4,10 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import org.lwjgl.opengl.GL11;
 
 import me.ihaq.iClient.iClient;
 import me.ihaq.iClient.modules.Module;
@@ -12,6 +16,7 @@ import me.ihaq.iClient.utils.Colors;
 import me.ihaq.iClient.utils.R2DUtils;
 import me.ihaq.iClient.utils.StringUtil;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
  
 public class TabGUI {
@@ -64,8 +69,16 @@ public class TabGUI {
             yPosBottom += 14;
         }
         if (section == Section.MODS) {
-            R2DUtils.drawRect(baseCategoryWidth + 4 +5, categoryPosition - 1, baseCategoryWidth +  baseModWidth + 10, categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, -1610612736);
-            R2DUtils.drawRect(baseCategoryWidth + 5 +5, modPosition, baseCategoryWidth + baseModWidth + 9, modPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());
+        	
+        	
+        	GL11.glScissor(baseCategoryWidth + 4 +5, categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, baseCategoryWidth+baseModWidth+10, (categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1) - (categoryPosition - 1) );
+        	GL11.glEnable(GL11.GL_SCISSOR_TEST);
+        	for(int x = 0 ; x<baseModWidth+10 ; x++){
+        		Gui.drawRect(baseCategoryWidth + 4 +5, categoryPosition - 1, baseCategoryWidth+x, categoryPosition + getModsInCategory(Category.values()[categoryTab]).size() * 14 + 1, -1610612736);
+    			Gui.drawRect(baseCategoryWidth + 5 +5, modPosition, baseCategoryWidth +x-1, modPosition + 14, Colors.getRainbow(0L, 1.0F).hashCode());       	
+        	}
+        	GL11.glDisable(GL11.GL_SCISSOR_TEST);
+        	
             yPos = categoryPosition;
             yPosBottom = categoryPosition + 14;
             for (int i = 0; i < getModsInCategory(Category.values()[categoryTab]).size(); i++) {
@@ -81,8 +94,8 @@ public class TabGUI {
             }
         }
     }
- 
-    public static void keyPress(int key) {
+
+	public static void keyPress(int key) {
         if (section == Section.CATEGORY) {
             switch (key) {
             case 205:

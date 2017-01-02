@@ -61,7 +61,7 @@ public class GuiNewChat extends Gui
                 GlStateManager.translate(2.0F, 20.0F, 0.0F);
                 GlStateManager.scale(f1, f1, 1.0F);
 
-                
+                int realCoolStuff = 0;
                 for (int i1 = 0; i1 + this.scrollPos < this.field_146253_i.size() && i1 < i; ++i1)
                 {
                     ChatLine chatline = (ChatLine)this.field_146253_i.get(i1 + this.scrollPos);
@@ -72,6 +72,7 @@ public class GuiNewChat extends Gui
 
                         if (j1 < 200 || flag)
                         {
+                        	realCoolStuff++;
                             double d0 = (double)j1 / 200.0D;
                             d0 = 1.0D - d0;
                             d0 = d0 * 10.0D;
@@ -105,9 +106,15 @@ public class GuiNewChat extends Gui
                         }
                     }
                 }
-
+                
                 if (flag)
                 {
+                	
+                    if(realCoolStuff != 0){
+                        double hroY =  -realCoolStuff * 9;
+                        Gui.drawRect(0, (int)(hroY), (int)(l + 4), (int)(hroY-1), Colors.getRainbow(0L, 1.0F).hashCode());
+                    }
+                    
                     int k2 = this.mc.fontRendererObj.FONT_HEIGHT;
                     GlStateManager.translate(-3.0F, 0.0F, 0.0F);
                     int l2 = k * k2 + k;

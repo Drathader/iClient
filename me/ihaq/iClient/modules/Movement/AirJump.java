@@ -23,9 +23,9 @@ public class AirJump extends Module{
             return;                     
         
         if(mc.gameSettings.keyBindJump.isPressed()){
-        	mc.thePlayer.motionX *= 1.2;
+        	mc.thePlayer.motionX *= 1.5;
         	mc.thePlayer.motionY = 0.4;
-        	mc.thePlayer.motionZ *= 1.2;
+        	mc.thePlayer.motionZ *= 1.5;
         	mc.thePlayer.onGround =  true;
         }      
         	

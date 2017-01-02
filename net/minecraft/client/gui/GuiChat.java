@@ -316,7 +316,7 @@ public class GuiChat extends GuiScreen
 		mc.getTextureManager().bindTexture(mc.thePlayer.getLocationSkin());
 		GL11.glColor4f(1F, 1F, 1F, 1F);
 		Gui.drawScaledCustomSizeModalRect(0, this.height - 14, 8, 8, 8, 8, size, size, 64, 64);
-
+		
 		this.inputField.xPosition = 16;
 		this.inputField.yPosition = this.height - 11;
 		this.inputField.drawTextBox();

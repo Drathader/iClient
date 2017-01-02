@@ -24,9 +24,12 @@ import com.google.common.collect.Lists;
 
 import me.ihaq.iClient.iClient;
 import me.ihaq.iClient.gui.GUIIButton;
+import me.ihaq.iClient.gui.GuiWindows.GuiAltManager;
 import me.ihaq.iClient.gui.GuiWindows.GuiCredits;
 import me.ihaq.iClient.utils.Colors;
+import me.ihaq.iClient.utils.RenderUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
@@ -34,6 +37,7 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.resources.SkinManager;
 import net.minecraft.realms.RealmsBridge;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
@@ -232,7 +236,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 				new GUIIButton(1, this.width / 2 - 100, p_73969_1_, I18n.format("menu.singleplayer", new Object[0])));
 		this.buttonList.add(new GUIIButton(2, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 1,
 				I18n.format("menu.multiplayer", new Object[0])));
-		this.buttonList.add(new GUIIButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20, "ChangeLog"));
+		this.buttonList.add(new GUIIButton(101, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, 98, 20, "AltManager"));
 		this.buttonList.add(new GUIIButton(100, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20, "Credits"));
 	}
 
@@ -287,6 +291,9 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
 
 		if (button.id == 100) { // the credits menu
 			this.mc.displayGuiScreen(new GuiCredits(this));
+		}
+		if (button.id == 101) { // the altmanager menu
+			this.mc.displayGuiScreen(new GuiAltManager(this));
 		}
 
 		if (button.id == 12) {
@@ -523,16 +530,24 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
         mc.fontRendererObj.drawStringWithShadow("i"+"\u00A7fClient", ((this.width/2) - 98)/scale+5.7F, (this.height / 4)/scale, Colors.getRainbow(0L, 1.0F).hashCode());
         GL11.glScalef(1.0F / scale, 1.0F / scale, 1.0F / scale);
         
-        /*
-        int size = 14;
-        mc.getTextureManager().bindTexture(mc.thePlayer.getLocationSkin());
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        Gui.drawScaledCustomSizeModalRect(0, this.height - 14, 8, 8, 8, 8, size, size, 64, 64);
-        */
         
-        drawRect(9, 9, 30, 30, -1610612736);
-        mc.fontRendererObj.drawStringWithShadow(Minecraft.getMinecraft().getSession().getUsername(), 10, 10, -1);
         
+        drawRect(9, 9, 30, 30, 1610612736);
+        int size = 40;
+        String name = Minecraft.getMinecraft().getSession().getUsername();
+        try {
+			AbstractClientPlayer.getDownloadImageSkin(AbstractClientPlayer.getLocationSkin(name), name).loadTexture(Minecraft.getMinecraft().getResourceManager());
+			Minecraft.getMinecraft().getTextureManager().bindTexture(AbstractClientPlayer.getLocationSkin(name));
+			GL11.glColor4f(1F, 1F, 1F, 1F);
+			Gui.drawScaledCustomSizeModalRect(5, 5, 8, 8, 8, 8, size, size, 64, 64);
+        } catch (IOException e) {
+		} 
+        
+        float scale1 = 1.3F;
+        GL11.glScalef(scale1, scale1, scale1);
+        mc.fontRendererObj.drawStringWithShadow("\u00A7fWelcome To §ri\u00A7fClient:", (10+size)/scale1, (10)/scale1 , Colors.getRainbow(0L, 1.0F).hashCode());
+        mc.fontRendererObj.drawStringWithShadow(name, (10+size)/scale1, (25)/scale1 , -1);
+        GL11.glScalef(1.0F / scale1, 1.0F / scale1, 1.0F / scale1);
         
         /*
 		if ((double) this.updateCounter < 1.0E-4D) {

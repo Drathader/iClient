@@ -39,6 +39,7 @@ public class KillAura extends Module {
 	public void triggerBot() {
 		setMode("\u00A7f[TRIGGERBOT]");
 		List list = mc.theWorld.playerEntities;
+		
 		for (Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
 			Object theObject = entities.next();
 			if (theObject instanceof EntityLivingBase) {
@@ -54,26 +55,33 @@ public class KillAura extends Module {
 				if (mc.objectMouseOver.typeOfHit != MovingObjectPosition.MovingObjectType.ENTITY) {
 					continue;
 				}
-				if (mc.thePlayer.getDistanceToEntity(entity) <= 4.5F && triggerDelay > 10) {
+				
+				if(!entity.equals(mc.objectMouseOver.entityHit)){
+					continue;					
+				}
+				
+				if (mc.thePlayer.getDistanceToEntity(entity) <= 4.5F && triggerDelay > 3) {
 					if (entity.isEntityAlive()) {
-
+						
 						if (Criticals.getCriticalsMode().equals("JUMP") && Criticals.active == true) {
 							if (mc.thePlayer.onGround) {
 								mc.thePlayer.jump();
 							}
-							mc.playerController.attackEntity(mc.thePlayer, entity);
-							//mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEnitity(mc.thePlayer, some enum to attack));
+							//mc.playerController.attackEntity(mc.thePlayer, entity);
+							mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(entity,C02PacketUseEntity.Action.ATTACK));
 							mc.thePlayer.swingItem();
 							triggerDelay = 0;
 							continue;
 						} else if (Criticals.getCriticalsMode().equals("PACKETS") && Criticals.active == true) {
 							Criticals.packets();
-							mc.playerController.attackEntity(mc.thePlayer, entity);
+							//mc.playerController.attackEntity(mc.thePlayer, entity);
+							mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(entity,C02PacketUseEntity.Action.ATTACK));
 							mc.thePlayer.swingItem();
 							triggerDelay = 0;
 							continue;
 						} else {
-							mc.playerController.attackEntity(mc.thePlayer, entity);
+							//mc.playerController.attackEntity(mc.thePlayer, entity);
+							mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(entity,C02PacketUseEntity.Action.ATTACK));
 							mc.thePlayer.swingItem();
 							triggerDelay = 0;
 							continue;

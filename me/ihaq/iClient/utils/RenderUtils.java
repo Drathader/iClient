@@ -2,7 +2,12 @@ package me.ihaq.iClient.utils;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormatElement;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -98,4 +103,42 @@ public class RenderUtils {
 		GL11.glDisable(GL11.GL_BLEND);
 	}
 	
+	public static void drawAltFace(String name, int x, int y, int w, int h, boolean selected) {
+        try {
+            AbstractClientPlayer.getDownloadImageSkin(AbstractClientPlayer.getLocationSkin(name), name).loadTexture(Minecraft.getMinecraft().getResourceManager());
+            Minecraft.getMinecraft().getTextureManager().bindTexture(AbstractClientPlayer.getLocationSkin(name));
+            Tessellator var3 = Tessellator.getInstance();
+            WorldRenderer var4 = var3.getWorldRenderer();
+            GL11.glEnable((int)3042);
+            if (selected) {
+                GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
+            } else {
+                GL11.glColor4f((float)0.9f, (float)0.9f, (float)0.9f, (float)1.0f);
+            }
+            double fw = 32.0;
+            double fh = 32.0;
+            double u = 32.0;
+            double v = 32.0;
+            var4.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            var4.pos((double)x + 0.0, (double)y + (double)h, 0.0);
+            var4.pos((double)x + (double)w, (double)y + (double)h, 0.0);
+            var4.pos((double)x + (double)w, (double)y + 0.0, 0.0);
+            var4.pos((double)x + 0.0, (double)y + 0.0, 0.0);
+            var3.draw();
+            fw = 32.0;
+            fh = 32.0;
+            u = 160.0;
+            v = 32.0;
+            var4.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+            var4.pos((double)x + 0.0, (double)y + (double)h, 0.0);
+            var4.pos((double)x + (double)w, (double)y + (double)h, 0.0);
+            var4.pos((double)x + (double)w, (double)y + 0.0, 0.0);
+            var4.pos((double)x + 0.0, (double)y + 0.0, 0.0);
+            var3.draw();
+            GL11.glDisable((int)3042);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }
