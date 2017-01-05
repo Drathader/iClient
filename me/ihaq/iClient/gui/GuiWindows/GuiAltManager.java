@@ -20,6 +20,12 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
+import com.mojang.authlib.exceptions.AuthenticationException;
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+import net.minecraft.util.Session;
+import com.mojang.authlib.Agent;
+import java.net.Proxy;
 
 public class GuiAltManager extends GuiScreen {
 	  
@@ -106,12 +112,22 @@ public class GuiAltManager extends GuiScreen {
 		if (clickedButton.enabled) {
 			if (clickedButton.id == 100) {
 				mc.displayGuiScreen(this.prevMenu);
-			} else if (clickedButton.id == 101) { // login
-				if(usernameBox.getText().equals(" ")){
-					//drawString(Minecraft.getMinecraft().fontRendererObj, "USERNAME CAN'T BE BLANK!", width / 2 - 100 , height/2-100 -50, -1);
+			} else if (clickedButton.id == 101) {
+				String username = usernameBox.getText(), password = passwordBox.getText();
+				if (username.length() < 1 || password.length() < 1) {
+					// Draw a string or something saying you need to input a password and username...
+					return;	
 				}
-				if(passwordBox.getText().equals("")){
-					//drawString();
+				
+				try {
+				YggdrasilAuthenticationService service = new YggdrasilAuthenticationService(Proxy.NO_PROXY, "");
+				YggdrasilUserAuthentication auth = new YggdrasilUserAuthentication(service, Agent.MINECRAFT);
+				auth.setUsername(username);
+				auth.setPassword(password);
+				auth.logIn();
+				minecraft.session = (new Session(auth.getSelectedProfile().getName(), auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), auth.getUserType().getName()));
+				} catch (AuthenticationException e) {
+					// Draw an erorr string or something...
 				}
 
 
